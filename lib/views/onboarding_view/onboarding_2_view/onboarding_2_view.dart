@@ -58,7 +58,7 @@ class Onboarding2View extends StatelessWidget {
 
               children: [
                 Image.asset(
-                  AppAssets.onboardingscreen2banner,
+                  AppAssets.onboardingscreen3banner,
                   height: 280,
                   width: 280,
                 ),
@@ -66,23 +66,23 @@ class Onboarding2View extends StatelessWidget {
                 Gap(43),
                 Center(
                   child: OboardingTitle(
-                    title: 'Focus on What Matters Most',
+                    title: 'Visualize Progress, Stay on Track',
                   ),
                 ),
                 Gap(10),
                 Center(
                   child: OboardingDes(
-                    des: 'Set priorities, add deadlines, and sort tasks by importance so you can tackle what truly moves you forward.',
+                    des: 'Monitor completed tasks, ongoing projects, and upcoming deadlines — all in a clear, visual format.',
                   ),
                 ),
                 Gap(43),
-                PageDot(currentindex: 1),
+                PageDot(currentindex: 2),
                 Gap(100),
                 OnboardingButton(
                   title: 'Next',
                   iconData: Icons.navigate_next,
                   ontap: () {
-                    Get.to(Onboarding3View());
+
                   },
                 ),
               ],
