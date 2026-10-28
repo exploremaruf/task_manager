@@ -4,22 +4,22 @@ import 'package:google_fonts/google_fonts.dart';
 import '../constant/app_colors.dart';
 
 class OnboardingButton extends StatelessWidget {
-  final String _title;
-  final IconData _iconData;
-  final VoidCallback _ontap;
+  final String title;
+  final IconData iconData;
+  final VoidCallback ontap;
 
   const OnboardingButton({
     super.key,
-    required this._title,
-    required this._iconData,
-    required this._ontap,
+    required this.title,
+    required this.iconData,
+    required this.ontap,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        _ontap;
+        ontap();
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
@@ -30,7 +30,7 @@ class OnboardingButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            _title,
+            title,
             style: GoogleFonts.poppins(
               fontSize: 14,
               fontWeight: FontWeight(600),
@@ -38,7 +38,7 @@ class OnboardingButton extends StatelessWidget {
             ),
           ),
           SizedBox(width: 10),
-          Icon(_iconData, size: 20, color: Colors.white),
+          Icon(iconData, size: 20, color: Colors.white),
         ],
       ),
     );

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constant/app_assets.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/constant/page_dot.dart';
 import 'package:task_manager/utils/onboarding_button.dart';
+import 'package:task_manager/views/onboarding_view/onboarding_2_view/onboarding_2_view.dart';
 
 import '../../../utils/oboarding_description.dart';
 import '../../../utils/oboarding_title.dart';
@@ -69,12 +71,14 @@ class Onboarding1View extends StatelessWidget {
                   ),
                 ),
                 Gap(43),
-                PageDot(),
+                PageDot(currentindex: 0),
                 Gap(100),
                 OnboardingButton(
                   title: 'Next',
                   iconData: Icons.navigate_next,
-                  ontap: () {},
+                  ontap: () {
+                    Get.to(Onboarding2View());
+                  },
                 ),
               ],
             ),
