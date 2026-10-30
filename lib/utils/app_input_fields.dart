@@ -7,7 +7,7 @@ class AppInputFields extends StatelessWidget {
   final String label;
   final String hinttext;
   Icon? prefixicon;
-  Icon? sufixicon;
+  IconButton? sufixicon;
   TextEditingController? controller;
   bool? obsecure=null;
 
