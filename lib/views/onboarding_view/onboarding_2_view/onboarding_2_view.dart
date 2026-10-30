@@ -51,14 +51,14 @@ class Onboarding2View extends StatelessWidget {
           padding: const EdgeInsets.only(top: 56, left: 16, right: 16),
 
           child: SizedBox(
-            width: 358,
+
 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
 
               children: [
                 Image.asset(
-                  AppAssets.onboardingscreen3banner,
+                  AppAssets.onboardingscreen2banner,
                   height: 280,
                   width: 280,
                 ),
@@ -76,15 +76,16 @@ class Onboarding2View extends StatelessWidget {
                   ),
                 ),
                 Gap(43),
-                PageDot(currentindex: 2),
+                PageDot(currentindex: 1),
                 Gap(100),
                 OnboardingButton(
                   title: 'Next',
                   iconData: Icons.navigate_next,
                   ontap: () {
-
+                   Get.to(Onboarding3View());
                   },
                 ),
+                Gap(48)
               ],
             ),
           ),

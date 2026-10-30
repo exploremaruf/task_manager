@@ -13,7 +13,7 @@ class OboardingDes extends StatelessWidget {
       style: GoogleFonts.poppins(
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
-        letterSpacing: 0.48,
+        letterSpacing: -0.48,
         fontSize: 12,
 
       ),

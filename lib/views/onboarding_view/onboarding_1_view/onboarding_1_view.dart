@@ -46,8 +46,6 @@ class Onboarding1View extends StatelessWidget {
           padding: const EdgeInsets.only(top: 56, left: 16, right: 16),
 
           child: SizedBox(
-            width: 358,
-
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
 
@@ -80,6 +78,7 @@ class Onboarding1View extends StatelessWidget {
                     Get.to(Onboarding2View());
                   },
                 ),
+                Gap(48)
               ],
             ),
           ),
