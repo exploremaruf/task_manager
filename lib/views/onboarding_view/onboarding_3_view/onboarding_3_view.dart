@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_manager/views/auth_view/login_view.dart';
 
 import '../../../constant/app_assets.dart';
 import '../../../constant/app_colors.dart';
@@ -50,14 +51,14 @@ class Onboarding3View extends StatelessWidget {
           padding: const EdgeInsets.only(top: 56, left: 16, right: 16),
 
           child: SizedBox(
-            width: 358,
+
 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
 
               children: [
                 Image.asset(
-                  AppAssets.onboardingscreen2banner,
+                  AppAssets.onboardingscreen3banner,
                   height: 280,
                   width: 280,
                 ),
@@ -75,15 +76,16 @@ class Onboarding3View extends StatelessWidget {
                   ),
                 ),
                 Gap(43),
-                PageDot(currentindex: 1),
+                PageDot(currentindex: 2),
                 Gap(100),
                 OnboardingButton(
                   title: 'Next',
                   iconData: Icons.navigate_next,
                   ontap: () {
-
+                        Get.to(LoginView());
                   },
                 ),
+                Gap(48)
               ],
             ),
           ),

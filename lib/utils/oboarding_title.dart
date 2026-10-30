@@ -13,8 +13,8 @@ class OboardingTitle extends StatelessWidget {
       style: GoogleFonts.poppins(
         fontWeight: FontWeight.w500,
         fontStyle: FontStyle.normal,
-        letterSpacing: 0.48,
-        fontSize: 18,
+        letterSpacing: -0.48,
+        fontSize: 20,
 
       ),
       textAlign: TextAlign.center,
