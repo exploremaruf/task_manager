@@ -12,14 +12,23 @@ import '../../../utils/auth_screen_title.dart';
 import '../login_view.dart';
 
 class SignupBodyWidget extends StatefulWidget {
-  SignupBodyWidget({super.key});
+  const SignupBodyWidget({super.key});
 
   @override
   State<SignupBodyWidget> createState() => _SignupBodyWidgetState();
 }
 
 class _SignupBodyWidgetState extends State<SignupBodyWidget> {
-  bool _isNotificationEnabled = false;
+  bool _isagree = false;
+  final TextEditingController _firstNameTEcontroller = TextEditingController();
+  final TextEditingController _lastNameTEcontroller = TextEditingController();
+  final TextEditingController _emailTEcontroller = TextEditingController();
+  final TextEditingController _addressTEcontroller = TextEditingController();
+  final TextEditingController _passwordTEcontroller = TextEditingController();
+  final TextEditingController _confirmpasswordTEcontroller =
+      TextEditingController();
+
+  bool _isPasswordhidden = true;
 
   @override
   Widget build(BuildContext context) {
@@ -32,25 +41,70 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
           des: 'Join Task Manager today — organize better, work smarter, and stay in control of your day.',
         ),
         SizedBox(height: 23),
-        AppInputFields(label: 'First Name', hinttext: 'e.g. Kristin'),
-        SizedBox(height: 23),
-        AppInputFields(label: 'Last Name', hinttext: 'e.g. Cooper'),
+        AppInputFields(
+          controller: _firstNameTEcontroller,
+          label: 'First Name',
+          hinttext: 'e.g. Kristin',
+        ),
         SizedBox(height: 23),
         AppInputFields(
+          controller: _lastNameTEcontroller,
+          label: 'Last Name',
+          hinttext: 'e.g. Cooper',
+        ),
+        SizedBox(height: 23),
+        AppInputFields(
+          controller: _emailTEcontroller,
           label: 'Email Address',
           hinttext: 'e.g. kristin.cooper@example.com',
         ),
         SizedBox(height: 23),
         AppInputFields(
+          controller: _addressTEcontroller,
           label: 'Address',
           hinttext: 'e.g. 1234 Elm Street, Springfield, IL',
         ),
         SizedBox(height: 23),
-        AppInputFields(label: 'PassWord', hinttext: 'Enter your password'),
+        AppInputFields(
+          controller: _passwordTEcontroller,
+          label: 'PassWord',
+          hinttext: 'Enter your password',
+          obsecure: _isPasswordhidden,
+          sufixicon: IconButton(
+            onPressed: () {
+              setState(() {
+                _isPasswordhidden = !_isPasswordhidden;
+              });
+            },
+            icon: Icon(
+              _isPasswordhidden
+                  ? Icons.visibility_off_outlined
+                  : Icons.visibility_outlined,
+            ),
+            iconSize: 20,
+            color: Colors.grey,
+          ),
+        ),
         SizedBox(height: 23),
         AppInputFields(
+          controller: _confirmpasswordTEcontroller,
           label: ' Confirm password',
           hinttext: 'confirm password',
+          obsecure: _isPasswordhidden,
+          sufixicon: IconButton(
+            onPressed: () {
+              setState(() {
+                _isPasswordhidden = !_isPasswordhidden;
+              });
+            },
+            icon: Icon(
+              _isPasswordhidden
+                  ? Icons.visibility_off_outlined
+                  : Icons.visibility_outlined,
+            ),
+            iconSize: 20,
+            color: Colors.grey,
+          ),
         ),
         SizedBox(height: 6),
         Row(
@@ -58,11 +112,11 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
           children: [
             Checkbox(
               // 2. Set current state
-              value: _isNotificationEnabled,
+              value: _isagree,
               // 3. Update state when tapped
               onChanged: (bool? newValue) {
                 setState(() {
-                  _isNotificationEnabled = newValue ?? false;
+                  _isagree = newValue ?? false;
                 });
               },
               activeColor: AppColors.primary,
