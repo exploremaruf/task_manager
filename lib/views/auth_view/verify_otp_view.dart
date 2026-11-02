@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:pinput/pinput.dart';
 import 'package:task_manager/constant/app_colors.dart';
+import 'package:task_manager/views/auth_view/set_new_password_view.dart';
 
 import '../../constant/app_otp_themes.dart';
 import '../../utils/app_button.dart';
@@ -35,7 +38,9 @@ class VerifyOtpView extends StatelessWidget {
                  ),
                ),
                 const SizedBox(height: 60),
-                AppButton(title: 'Send', ontap: () {}),
+                AppButton(title: 'Send', ontap: () {
+                  Get.to(SetNewPasswordView());
+                }),
               ],
             ),
           ),
