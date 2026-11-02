@@ -10,7 +10,11 @@ class AuthScreenTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: GoogleFonts.poppins(fontSize: 30, fontWeight: FontWeight.w500),
+      style: GoogleFonts.poppins(
+        fontSize: 30,
+        fontWeight: FontWeight.w500,
+        height: 2.375,
+      ),
     );
   }
 }
