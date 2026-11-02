@@ -160,8 +160,7 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
             ),
           ],
         ),
-        SizedBox(height: 23),
-        AppButton(title: 'Continue', ontap: () {}),
+
       ],
     );
   }

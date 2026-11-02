@@ -13,7 +13,8 @@ class AuthScreenDes extends StatelessWidget {
       fontSize: 14,
       fontWeight: FontWeight.w400,
       letterSpacing: -1,
-      color: AppColors.secondarytext
+      color: AppColors.secondarytext,
+      height: 1.25
 
     ),);
   }

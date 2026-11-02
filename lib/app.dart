@@ -6,6 +6,7 @@ import 'package:task_manager/views/onboarding_view/onboarding_1_view/onboarding_
 import 'package:task_manager/views/splash_view/splash_view.dart';
 
 import 'constant/app_colors.dart';
+import 'package:pinput/pinput.dart';
 
 class TaskManager extends StatelessWidget {
   const TaskManager({super.key});
@@ -18,7 +19,10 @@ class TaskManager extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         inputDecorationTheme: _buildInputDecorationTheme(),
-      )
+        
+      ),
+
+
 
     );
   }
@@ -52,4 +56,7 @@ class TaskManager extends StatelessWidget {
         ),
       );
   }
+
+
+
 }
