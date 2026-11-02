@@ -16,14 +16,13 @@ class AppOtpThemes {
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(8),
       border: Border.all(color: Colors.grey.shade300),
-      color: AppColors.primary
+      color: AppColors.primary,
     ),
   );
 
   static final focusedPinTheme = defaultPinTheme.copyWith(
     decoration: defaultPinTheme.decoration!.copyWith(
-
-      border: Border.all(color:AppColors.primary),
+      border: Border.all(color: AppColors.primary),
     ),
   );
 

@@ -8,6 +8,8 @@ class CustomText extends StatelessWidget {
   Color? color;
   double? letterSpacing;
   double? wordSpacing;
+  double? lineheight;
+
 
   CustomText({
     super.key,
@@ -17,6 +19,7 @@ class CustomText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.wordSpacing,
+    this.lineheight
   });
 
   @override
@@ -29,6 +32,7 @@ class CustomText extends StatelessWidget {
         color: color,
         letterSpacing: letterSpacing,
         wordSpacing: wordSpacing,
+        height: lineheight
       ),
     );
   }
