@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:task_manager/constant/app_colors.dart';
 
 import '../../constant/app_otp_themes.dart';
 import '../../utils/app_button.dart';
@@ -12,6 +13,7 @@ class VerifyOtpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: Center(
         child: SafeArea(
           child: SingleChildScrollView(
