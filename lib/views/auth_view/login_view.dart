@@ -9,6 +9,7 @@ import 'package:task_manager/utils/app_input_fields.dart';
 import 'package:task_manager/utils/auth_screen_des.dart';
 import 'package:task_manager/utils/auth_screen_title.dart';
 import 'package:task_manager/views/auth_view/signup_view.dart';
+import 'package:task_manager/views/home_view/home_view.dart';
 import 'package:text_divider/text_divider.dart';
 
 class LoginView extends StatefulWidget {
@@ -125,7 +126,12 @@ class _LoginViewState extends State<LoginView> {
                       ],
                     ),
                     Gap(23),
-                    AppButton(title: 'Log In', ontap: () {}),
+                    AppButton(
+                      title: 'Log In',
+                      ontap: () {
+                        Get.off(HomeView());
+                      },
+                    ),
                   ],
                 ),
               ),
