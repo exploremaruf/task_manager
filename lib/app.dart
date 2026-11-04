@@ -7,6 +7,7 @@ import 'package:task_manager/views/edit_task_view/edit_task_view.dart';
 import 'package:task_manager/views/task_details_view/task_details_view.dart';
 
 import 'constant/app_colors.dart';
+import 'views/profile_view/profile.dart';
 
 class TaskManager extends StatelessWidget {
   const TaskManager({super.key});
@@ -15,7 +16,7 @@ class TaskManager extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Task Manager',
-      home: EditTaskView(),
+      home: Profile(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(inputDecorationTheme: _buildInputDecorationTheme()),
     );
