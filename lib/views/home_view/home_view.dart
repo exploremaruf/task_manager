@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:task_manager/constant/app_assets.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/utils/custom_text.dart';
+import 'package:task_manager/utils/dashboard.dart';
 import 'package:task_manager/utils/task_item.dart';
+import 'package:task_manager/views/home_view/model/task_model.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
 
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
+  TaskModel taskModel = new TaskModel();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,33 +28,26 @@ class _HomeViewState extends State<HomeView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    height: 96,
-                    width: 96,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      image: DecorationImage(
-                        image: AssetImage(AppAssets.profileimage),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                  const CircleAvatar(
+                    radius: 28,
+                    backgroundImage: AssetImage(AppAssets.profileimage),
                   ),
-
+                  const SizedBox(width: 15),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText(
-                        text: 'Hello Mojahid',
-                        color: AppColors.primarytext,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                      const Text(
+                        'Hello Mojahid',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
-                      CustomText(
-                        text: 'Welcome to Task Manager ',
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
+                      Text(
+                        'Welcome to Task Manager',
+                        style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                       ),
                     ],
                   ),
@@ -68,17 +66,21 @@ class _HomeViewState extends State<HomeView> {
 
               Expanded(
                 child: ListView.builder(
-                  itemCount: 10,
+                  padding: EdgeInsets.only(bottom: 31),
+                  itemCount: taskModel.tasklist.length,
                   itemBuilder: (context, index) {
-                    return TaskItem();
+                    return TaskItem(
+                      title: '${taskModel.tasklist[index]['title']}',
+                      des: '${taskModel.tasklist[index]['description']}',
+                    );
                   },
                 ),
               ),
-              SizedBox(height: 10),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: Dashboard(),
     );
   }
 }

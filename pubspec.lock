@@ -272,6 +272,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.3"
+  motion_tab_bar_v2:
+    dependency: "direct main"
+    description:
+      name: motion_tab_bar_v2
+      sha256: "69d17b9f626e4ad3d7a893bcef1cf226cf8eec43ade380747f899e93d39fb522"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   objective_c:
     dependency: transitive
     description:
