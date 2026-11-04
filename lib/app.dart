@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/views/add_task_view/add_task_view.dart';
+import 'package:task_manager/views/edit_task_view/edit_task_view.dart';
 
 import 'package:task_manager/views/task_details_view/task_details_view.dart';
 
@@ -14,7 +15,7 @@ class TaskManager extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Task Manager',
-      home: AddTaskView(),
+      home: EditTaskView(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(inputDecorationTheme: _buildInputDecorationTheme()),
     );

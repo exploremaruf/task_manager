@@ -51,8 +51,8 @@ class AddTaskView extends StatelessWidget {
                     maxlines: null,
                     minlines: 3,
                   ),
-                  SizedBox(height: 23,),
-                  AppButton(title: 'Save Task', ontap: (){})
+                  SizedBox(height: 23),
+                  AppButton(title: 'Save Task', ontap: () {}),
                 ],
               ),
             ),
