@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task_manager/views/home_view/home_view.dart';
+import 'package:task_manager/views/add_task_view/add_task_view.dart';
 
-import 'package:task_manager/views/onboarding_view/onboarding_1_view/onboarding_1_view.dart';
-
-import 'package:task_manager/views/splash_view/splash_view.dart';
 import 'package:task_manager/views/task_details_view/task_details_view.dart';
 
 import 'constant/app_colors.dart';
-
-import 'package:pinput/pinput.dart';
 
 class TaskManager extends StatelessWidget {
   const TaskManager({super.key});
@@ -19,7 +14,7 @@ class TaskManager extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Task Manager',
-      home: TaskDetailsView(),
+      home: AddTaskView(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(inputDecorationTheme: _buildInputDecorationTheme()),
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
+
 import 'package:task_manager/constant/app_assets.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/utils/custom_text.dart';
@@ -8,14 +8,14 @@ import 'package:task_manager/utils/task_item.dart';
 import 'package:task_manager/views/home_view/model/task_model.dart';
 
 class HomeView extends StatefulWidget {
-  HomeView({super.key});
+  const HomeView({super.key});
 
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
-  TaskModel taskModel = new TaskModel();
+  TaskModel taskModel = TaskModel();
 
   @override
   Widget build(BuildContext context) {
