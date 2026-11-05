@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/utils/app_button.dart';
 import 'package:task_manager/utils/app_input_fields.dart';
 import 'package:task_manager/utils/custom_text.dart';
+import 'package:task_manager/utils/dashboard.dart';
 
 class SetNewPasswordView extends StatefulWidget {
   const SetNewPasswordView({super.key});
@@ -12,12 +15,10 @@ class SetNewPasswordView extends StatefulWidget {
 }
 
 class _SetNewPasswordViewState extends State<SetNewPasswordView> {
-  bool isObsecure =true;
+  bool isObsecure = true;
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -84,7 +85,12 @@ class _SetNewPasswordViewState extends State<SetNewPasswordView> {
                 ),
               ),
               SizedBox(height: 23),
-              AppButton(title: 'Continue ', ontap: () {}),
+              AppButton(
+                title: 'Continue ',
+                ontap: () {
+                  Get.offAll(Dashboard());
+                },
+              ),
             ],
           ),
         ),

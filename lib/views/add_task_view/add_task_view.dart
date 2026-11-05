@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager/utils/app_button.dart';
 import 'package:task_manager/utils/app_input_fields.dart';
 
@@ -14,13 +15,16 @@ class AddTaskView extends StatelessWidget {
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background,
-        leading: Transform.translate(
-          offset: Offset(16, 0),
-          child: CircleAvatar(
-            backgroundColor: AppColors.textfieldcolor,
-            child: Icon(Icons.arrow_back_ios, color: AppColors.primary),
-          ),
-        ),
+        // leading: Transform.translate(
+        //   offset: Offset(16, 0),
+        //   child: GestureDetector(
+        //     onTap: ()=>Get.back(),
+        //     child: CircleAvatar(
+        //       backgroundColor: AppColors.textfieldcolor,
+        //       child: Icon(Icons.arrow_back_ios, color: AppColors.primary),
+        //     ),
+        //   ),
+        // ),
 
         title: CustomText(
           text: 'Add Task ',

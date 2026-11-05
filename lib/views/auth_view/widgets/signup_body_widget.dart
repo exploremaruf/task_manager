@@ -123,14 +123,14 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
               side: BorderSide(color: AppColors.primary, width: 2),
             ),
 
-            Text(
+            Expanded(child: Text(
               'I agree to the Terms & Conditions and Privacy Policy.',
               style: GoogleFonts.poppins(
                 fontSize: 12,
                 color: AppColors.semiprimarytext,
                 fontWeight: FontWeight.w400,
               ),
-            ),
+            ),)
           ],
         ),
         SizedBox(height: 23),

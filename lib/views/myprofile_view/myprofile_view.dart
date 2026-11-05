@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/utils/custom_text.dart';
 import 'package:task_manager/views/myprofile_view/widgets/myprofile_header.dart';
@@ -15,13 +16,16 @@ class MyprofileView extends StatelessWidget {
         backgroundColor: AppColors.background,
         leading: Transform.translate(
           offset: Offset(16, 0),
-          child: CircleAvatar(
-            backgroundColor: AppColors.textfieldcolor,
+          child: GestureDetector(
+            onTap: () => Get.back(),
+            child: CircleAvatar(
+              backgroundColor: AppColors.textfieldcolor,
 
-            child: Icon(
-              Icons.arrow_back_ios_new,
-              color: AppColors.primary,
-              size: 20,
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                color: AppColors.primary,
+                size: 20,
+              ),
             ),
           ),
         ),
@@ -34,13 +38,15 @@ class MyprofileView extends StatelessWidget {
         actions: [
           Transform.translate(
             offset: Offset(0, 0),
-            child: CircleAvatar(
-              radius: 40,
-              backgroundColor: AppColors.textfieldcolor,
-              child: Icon(
-                Icons.border_color_outlined,
-                color: AppColors.primary,
-                size: 20,
+            child: GestureDetector(
+              child: CircleAvatar(
+                radius: 40,
+                backgroundColor: AppColors.textfieldcolor,
+                child: Icon(
+                  Icons.border_color_outlined,
+                  color: AppColors.primary,
+                  size: 20,
+                ),
               ),
             ),
           ),

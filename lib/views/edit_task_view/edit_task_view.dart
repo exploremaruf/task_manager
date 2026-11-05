@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constant/app_colors.dart';
 import '../../utils/app_button.dart';
@@ -16,9 +17,14 @@ class EditTaskView extends StatelessWidget {
         backgroundColor: AppColors.background,
         leading: Transform.translate(
           offset: Offset(16, 0),
-          child: CircleAvatar(
-            backgroundColor: AppColors.textfieldcolor,
-            child: Icon(Icons.arrow_back_ios, color: AppColors.primary),
+          child: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: CircleAvatar(
+              backgroundColor: AppColors.textfieldcolor,
+              child: Icon(Icons.arrow_back_ios, color: AppColors.primary),
+            ),
           ),
         ),
 
