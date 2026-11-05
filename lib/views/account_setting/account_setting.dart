@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager/views/account_setting/widgets/account_setting_tile.dart';
+import 'package:task_manager/views/change_password/change_password.dart';
 
 import '../../constant/app_colors.dart';
 import '../../utils/custom_text.dart';
@@ -15,13 +17,16 @@ class AccountSetting extends StatelessWidget {
         backgroundColor: AppColors.background,
         leading: Transform.translate(
           offset: Offset(16, 0),
-          child: CircleAvatar(
-            backgroundColor: AppColors.textfieldcolor,
+          child: GestureDetector(
+            onTap: ()=>Get.back(),
+            child: CircleAvatar(
+              backgroundColor: AppColors.textfieldcolor,
 
-            child: Icon(
-              Icons.arrow_back_ios_new,
-              color: AppColors.primary,
-              size: 20,
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                color: AppColors.primary,
+                size: 20,
+              ),
             ),
           ),
         ),
@@ -56,7 +61,10 @@ class AccountSetting extends StatelessWidget {
               icon: Icons.lock_outline,
               title: 'Change Password',
               itemcolor: AppColors.primary,
-              ontap: () {},
+              ontap: () {
+                Get.to(ChangePassword());
+
+              },
               titlecolor: AppColors.primarytext,
             ),
             AccountSettingTile(

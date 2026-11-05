@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/utils/app_button.dart';
 import 'package:task_manager/utils/app_input_fields.dart';
@@ -27,7 +28,8 @@ class VerifyYourEmailView extends StatelessWidget {
               AppInputFields(label: 'Email', hinttext: 'michelle.rivera@example.com'),
               SizedBox(height: 70,),
               AppButton(title: 'Send', ontap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>VerifyOtpView()));
+                Get.to(VerifyOtpView());
+
               })
 
             ],

@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easy_faq/flutter_easy_faq.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constant/app_assets.dart';
 
@@ -19,13 +20,17 @@ class HelpView extends StatelessWidget {
         backgroundColor: AppColors.background,
         leading: Transform.translate(
           offset: Offset(16, 0),
-          child: CircleAvatar(
-            backgroundColor: AppColors.textfieldcolor,
+          child: GestureDetector(
+            onTap: ()=>Get.back(),
 
-            child: Icon(
-              Icons.arrow_back_ios_new,
-              color: AppColors.primary,
-              size: 20,
+            child: CircleAvatar(
+              backgroundColor: AppColors.textfieldcolor,
+
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                color: AppColors.primary,
+                size: 20,
+              ),
             ),
           ),
         ),

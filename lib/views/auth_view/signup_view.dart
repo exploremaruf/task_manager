@@ -36,12 +36,7 @@ class _SignupViewState extends State<SignupView> {
                 AppButton(
                   title: 'Continue',
                   ontap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => VerifyYourEmailView(),
-                      ),
-                    );
+                    Get.to(VerifyYourEmailView());
                   },
                 ),
               ],

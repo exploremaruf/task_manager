@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager/views/terms_and_condition_view/widgets/body_temp_widget.dart';
 
 import '../../constant/app_colors.dart';
@@ -15,12 +16,16 @@ class PrivacyPolicyView extends StatelessWidget {
         backgroundColor: AppColors.background,
         leading: Transform.translate(
           offset: Offset(16, 0),
-          child: CircleAvatar(
-            backgroundColor: AppColors.textfieldcolor,
-            child: Icon(
-              Icons.arrow_back_ios_new,
-              color: AppColors.primary,
-              size: 20,
+          child: GestureDetector(
+            onTap: () => Get.back(),
+
+            child: CircleAvatar(
+              backgroundColor: AppColors.textfieldcolor,
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                color: AppColors.primary,
+                size: 20,
+              ),
             ),
           ),
         ),

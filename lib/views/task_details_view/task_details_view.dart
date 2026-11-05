@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/utils/custom_text.dart';
 import 'package:task_manager/utils/task_details_template.dart';
@@ -14,9 +16,12 @@ class TaskDetailsView extends StatelessWidget {
         backgroundColor: AppColors.background,
         leading: Transform.translate(
           offset: Offset(16, 0),
-          child: CircleAvatar(
-            backgroundColor: AppColors.textfieldcolor,
-            child: Icon(Icons.arrow_back_ios, color: AppColors.primary),
+          child: InkWell(
+            onTap: ()=>Get.back(),
+            child: CircleAvatar(
+              backgroundColor: AppColors.textfieldcolor,
+              child: Icon(Icons.arrow_back_ios, color: AppColors.primary),
+            ),
           ),
         ),
 
