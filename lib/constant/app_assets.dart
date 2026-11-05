@@ -12,4 +12,5 @@ class AppAssets {
   static const taskitemicon = 'assets/images/taskitemicon.png';
   static const profilescreenheaderbg = 'assets/images/profilescreenheaderbg.png';
   static const profilescreenimage = 'assets/images/profilescreenimage.png';
+  static const needhelpicon = 'assets/images/needhelpicon.png';
 }
