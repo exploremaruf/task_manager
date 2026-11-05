@@ -12,6 +12,7 @@ import '../../../constant/page_dot.dart';
 import '../../../utils/oboarding_description.dart';
 import '../../../utils/oboarding_title.dart';
 import '../../../utils/onboarding_button.dart';
+import '../widgets/skip_tap.dart';
 
 class Onboarding2View extends StatelessWidget {
   const Onboarding2View({super.key});
@@ -24,7 +25,7 @@ class Onboarding2View extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Get.off(Onboarding1View());
+            Get.offAll(Onboarding1View(),transition: Transition.cupertino);
 
           },
           icon: Icon(Icons.keyboard_backspace, size: 24),
@@ -33,14 +34,7 @@ class Onboarding2View extends StatelessWidget {
           Center(
             child: Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: Text(
-                'Skip',
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 12,
-                  color: AppColors.primary,
-                ),
-              ),
+              child: SkipTap(),
             ),
           ),
         ],
@@ -82,7 +76,7 @@ class Onboarding2View extends StatelessWidget {
                   title: 'Next',
                   iconData: Icons.navigate_next,
                   ontap: () {
-                   Get.to(Onboarding3View());
+                   Get.to(Onboarding3View(),transition: Transition.cupertino);
                   },
                 ),
                 Gap(48)
