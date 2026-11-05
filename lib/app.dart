@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/utils/dashboard.dart';
@@ -25,8 +26,10 @@ class TaskManager extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Task Manager',
-      home: Dashboard(),
+      home: Onboarding1View(),
       debugShowCheckedModeBanner: false,
+      defaultTransition: Transition.cupertino,
+      transitionDuration: const Duration(milliseconds: 350),
       theme: ThemeData(inputDecorationTheme: _buildInputDecorationTheme()),
     );
   }
