@@ -6,6 +6,8 @@ import 'package:task_manager/constant/app_assets.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/constant/page_dot.dart';
 import 'package:task_manager/utils/onboarding_button.dart';
+import 'package:task_manager/views/auth_view/login_view.dart';
+import 'package:task_manager/views/auth_view/signup_view.dart';
 import 'package:task_manager/views/onboarding_view/onboarding_2_view/onboarding_2_view.dart';
 
 import '../../../utils/oboarding_description.dart';
@@ -20,20 +22,23 @@ class Onboarding1View extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.keyboard_backspace, size: 24),
-        ),
+        
         actions: [
           Center(
             child: Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: Text(
-                'Skip',
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 12,
-                  color: AppColors.primary,
+              child: InkWell(
+                onTap:(){
+                  Get.off(LoginView());
+                },
+                child: Text(
+                  
+                  'Skip',
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12,
+                    color: AppColors.primary,
+                  ),
                 ),
               ),
             ),
