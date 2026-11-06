@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager/utils/dialog_template.dart';
+import 'package:task_manager/views/edit_task_view/edit_task_view.dart';
 
 import '../constant/app_colors.dart';
 import 'custom_text.dart';
@@ -118,8 +120,8 @@ class TaskDetailsTemplate extends StatelessWidget {
                                       barrierDismissible: false,
                                       builder: (context) {
                                         return const WarningDialog(
-                                          title: 'Success',
-                                          message: 'Task has been deleted!',
+                                          title: 'Warning!',
+                                          message: 'Are you sure you want to delete?',
                                         );
                                       },
                                     );
@@ -159,7 +161,11 @@ class TaskDetailsTemplate extends StatelessWidget {
                                 ),
                                 SizedBox(width: 8),
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(EditTaskView());
+
+
+                                  },
                                   style: TextButton.styleFrom(
                                     backgroundColor: Colors.green.shade50,
                                     side: BorderSide(

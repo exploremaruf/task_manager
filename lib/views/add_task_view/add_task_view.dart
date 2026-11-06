@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/utils/app_button.dart';
 import 'package:task_manager/utils/app_input_fields.dart';
+import 'package:task_manager/views/add_task_view/widgets/success_toaster.dart';
 
 import '../../constant/app_colors.dart';
 import '../../utils/custom_text.dart';
@@ -56,7 +57,10 @@ class AddTaskView extends StatelessWidget {
                     minlines: 3,
                   ),
                   SizedBox(height: 23),
-                  AppButton(title: 'Save Task', ontap: () {}),
+                  AppButton(title: 'Save Task', ontap: () {
+                    return showToast();
+
+                  }),
                 ],
               ),
             ),

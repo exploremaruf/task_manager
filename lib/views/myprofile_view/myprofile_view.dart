@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/utils/custom_text.dart';
+import 'package:task_manager/views/edit_profile_view/edit_profile_view.dart';
 import 'package:task_manager/views/myprofile_view/widgets/myprofile_header.dart';
 import 'package:task_manager/views/myprofile_view/widgets/myprofile_item_tile.dart';
 
@@ -39,6 +40,7 @@ class MyprofileView extends StatelessWidget {
           Transform.translate(
             offset: Offset(0, 0),
             child: GestureDetector(
+              onTap: ()=>Get.to(EditProfileView()),
               child: CircleAvatar(
                 radius: 40,
                 backgroundColor: AppColors.textfieldcolor,
