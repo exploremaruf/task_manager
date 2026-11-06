@@ -27,7 +27,7 @@ class WarningDialog extends StatelessWidget {
                 color: Colors.orange.shade50,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Icon(Icons.warning_amber_outlined),
+              child: Icon(Icons.warning_amber_outlined,color: Colors.orange,),
             ),
 
             const SizedBox(height: 10),

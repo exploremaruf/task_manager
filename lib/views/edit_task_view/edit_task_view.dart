@@ -58,7 +58,20 @@ class EditTaskView extends StatelessWidget {
                     minlines: 3,
                   ),
                   SizedBox(height: 23),
-                  AppButton(title: 'Update Task', ontap: () {}),
+                  AppButton(
+                    title: 'Update Task',
+                    ontap: () {
+                      Get.snackbar(
+                        'Success',
+                        'Task Updated!',
+                        backgroundColor: Colors.black.withOpacity(0.5),
+                        colorText: Colors.white,
+                        forwardAnimationCurve: Curves.easeOutBack,
+                        duration: Duration(seconds: 2),
+                        isDismissible: true,
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

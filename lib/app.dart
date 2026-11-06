@@ -12,6 +12,7 @@ import 'package:task_manager/views/faq_view/help_view.dart';
 import 'package:task_manager/views/myprofile_view/myprofile_view.dart';
 import 'package:task_manager/views/onboarding_view/onboarding_1_view/onboarding_1_view.dart';
 import 'package:task_manager/views/privacy_policy_view/privacy_policy_view.dart';
+import 'package:task_manager/views/splash_view/splash_view.dart';
 
 import 'package:task_manager/views/task_details_view/task_details_view.dart';
 import 'package:task_manager/views/terms_and_condition_view/terms_and_condition_view.dart';
@@ -26,11 +27,16 @@ class TaskManager extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Task Manager',
-      home: Onboarding1View(),
+      home: SplashView(),
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.cupertino,
       transitionDuration: const Duration(milliseconds: 350),
-      theme: ThemeData(inputDecorationTheme: _buildInputDecorationTheme()),
+      theme: ThemeData(
+          inputDecorationTheme: _buildInputDecorationTheme(),
+
+
+      ),
+
     );
   }
 
