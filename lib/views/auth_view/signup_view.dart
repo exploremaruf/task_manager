@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:task_manager/utils/app_input_fields.dart';
-import 'package:task_manager/utils/auth_screen_des.dart';
-import 'package:task_manager/utils/auth_screen_title.dart';
-import 'package:task_manager/views/auth_view/login_view.dart';
 import 'package:task_manager/views/auth_view/verify_your_email_view.dart';
 import 'package:task_manager/views/auth_view/widgets/signup_body_widget.dart';
-import 'package:text_divider/text_divider.dart';
 
 import '../../constant/app_colors.dart';
 import '../../utils/app_button.dart';

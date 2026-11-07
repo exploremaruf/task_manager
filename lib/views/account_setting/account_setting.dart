@@ -18,7 +18,7 @@ class AccountSetting extends StatelessWidget {
         leading: Transform.translate(
           offset: Offset(16, 0),
           child: GestureDetector(
-            onTap: ()=>Get.back(),
+            onTap: () => Get.back(),
             child: CircleAvatar(
               backgroundColor: AppColors.textfieldcolor,
 
@@ -63,7 +63,6 @@ class AccountSetting extends StatelessWidget {
               itemcolor: AppColors.primary,
               ontap: () {
                 Get.to(ChangePassword());
-
               },
               titlecolor: AppColors.primarytext,
             ),

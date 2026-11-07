@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constant/app_assets.dart';
-import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/constant/page_dot.dart';
 import 'package:task_manager/utils/onboarding_button.dart';
-import 'package:task_manager/views/auth_view/login_view.dart';
-import 'package:task_manager/views/auth_view/signup_view.dart';
 import 'package:task_manager/views/onboarding_view/onboarding_2_view/onboarding_2_view.dart';
 
 import '../../../utils/oboarding_description.dart';
@@ -68,7 +64,7 @@ class Onboarding1View extends StatelessWidget {
                   title: 'Next',
                   iconData: Icons.navigate_next,
                   ontap: () {
-                    Get.to(Onboarding2View(),transition: Transition.cupertino);
+                    Get.to(Onboarding2View(), transition: Transition.cupertino);
                   },
                 ),
                 Gap(48),
