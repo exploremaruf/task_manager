@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:task_manager/utils/dashboard.dart';
 import 'package:task_manager/views/auth_view/login_view.dart';
 import 'package:task_manager/views/onboarding_view/widgets/skip_tap.dart';
 
 import '../../../constant/app_assets.dart';
-import '../../../constant/app_colors.dart';
 import '../../../constant/page_dot.dart';
 import '../../../utils/oboarding_description.dart';
 import '../../../utils/oboarding_title.dart';
@@ -72,7 +69,7 @@ class Onboarding3View extends StatelessWidget {
                   title: 'Next',
                   iconData: Icons.navigate_next,
                   ontap: () {
-                    Get.offAll(LoginView(),transition: Transition.cupertino);
+                    Get.offAll(LoginView(), transition: Transition.cupertino);
                   },
                 ),
                 Gap(48),

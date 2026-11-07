@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/utils/app_button.dart';
 import 'package:task_manager/utils/app_input_fields.dart';

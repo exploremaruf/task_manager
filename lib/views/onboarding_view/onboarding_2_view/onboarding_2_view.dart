@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
-import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/views/onboarding_view/onboarding_1_view/onboarding_1_view.dart';
 import 'package:task_manager/views/onboarding_view/onboarding_3_view/onboarding_3_view.dart';
 
 import '../../../constant/app_assets.dart';
-import '../../../constant/app_colors.dart';
 import '../../../constant/page_dot.dart';
 import '../../../utils/oboarding_description.dart';
 import '../../../utils/oboarding_title.dart';
@@ -25,8 +23,7 @@ class Onboarding2View extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Get.offAll(Onboarding1View(),transition: Transition.cupertino);
-
+            Get.offAll(Onboarding1View(), transition: Transition.cupertino);
           },
           icon: Icon(Icons.keyboard_backspace, size: 24),
         ),
@@ -45,8 +42,6 @@ class Onboarding2View extends StatelessWidget {
           padding: const EdgeInsets.only(top: 56, left: 16, right: 16),
 
           child: SizedBox(
-
-
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
 
@@ -76,10 +71,10 @@ class Onboarding2View extends StatelessWidget {
                   title: 'Next',
                   iconData: Icons.navigate_next,
                   ontap: () {
-                   Get.to(Onboarding3View(),transition: Transition.cupertino);
+                    Get.to(Onboarding3View(), transition: Transition.cupertino);
                   },
                 ),
-                Gap(48)
+                Gap(48),
               ],
             ),
           ),

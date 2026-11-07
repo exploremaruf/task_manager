@@ -10,7 +10,7 @@ class TaskItem extends StatelessWidget {
   final String title;
   final String des;
 
-  TaskItem({super.key, required this.title, required this.des});
+  const TaskItem({super.key, required this.title, required this.des});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,6 @@ class TaskItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Get.to(TaskDetailsView());
-          print('working, tap detected!');
         },
         child: Container(
           width: double.infinity,

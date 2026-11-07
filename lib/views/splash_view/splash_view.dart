@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:task_manager/views/onboarding_view/onboarding_1_view/onboarding_1_view.dart';
 
 import '../../constant/app_assets.dart';
-import 'package:get/get.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -13,21 +12,16 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-  
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    
-    Future.delayed(Duration(seconds: 2),(){
+
+    Future.delayed(Duration(seconds: 2), () {
       Get.off(Onboarding1View());
-
-
     });
-    
   }
-  
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
