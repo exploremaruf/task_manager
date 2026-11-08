@@ -14,7 +14,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  TaskModel taskModel = TaskModel();
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +66,11 @@ class _HomeViewState extends State<HomeView> {
               Expanded(
                 child: ListView.builder(
                   padding: EdgeInsets.only(bottom: 31),
-                  itemCount: taskModel.tasklist.length,
+                  itemCount: TaskModel.tasklist.length,
                   itemBuilder: (context, index) {
                     return TaskItem(
-                      title: '${taskModel.tasklist[index]['title']}',
-                      des: '${taskModel.tasklist[index]['description']}',
+                      title: '${TaskModel.tasklist[index]['title']}',
+                      des: '${TaskModel.tasklist[index]['description']}',
                     );
                   },
                 ),
