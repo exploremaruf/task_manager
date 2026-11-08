@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager/utils/app_button.dart';
 import 'package:task_manager/utils/app_input_fields.dart';
 import 'package:task_manager/views/add_task_view/widgets/success_toaster.dart';
+import 'package:task_manager/views/home_view/model/task_model.dart';
 
 import '../../constant/app_colors.dart';
 import '../../utils/custom_text.dart';
 
-class AddTaskView extends StatelessWidget {
+class AddTaskView extends StatefulWidget {
   const AddTaskView({super.key});
+
+  @override
+  State<AddTaskView> createState() => _AddTaskViewState();
+}
+
+class _AddTaskViewState extends State<AddTaskView> {
+  final TextEditingController titleTEController = TextEditingController();
+  final TextEditingController desTEController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +55,13 @@ class AddTaskView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppInputFields(
+                    controller: titleTEController,
                     label: 'Task Title',
                     hinttext: 'e.g. Design Landing Page Header',
                   ),
                   SizedBox(height: 23),
                   AppInputFields(
+                    controller: desTEController,
                     label: 'Description',
                     hinttext: 'e.g. Include logo, navigation, and CTA button with brand color',
                     maxlines: null,
@@ -59,6 +71,13 @@ class AddTaskView extends StatelessWidget {
                   AppButton(
                     title: 'Save Task',
                     ontap: () {
+                      setState(() {
+                        TaskModel.tasklist.add({
+                          'title': titleTEController.text.trim().toString(),
+                          'description': desTEController.text.trim().toString(),
+                        });
+                      });
+
                       return showToast();
                     },
                   ),
@@ -69,5 +88,13 @@ class AddTaskView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    titleTEController.dispose();
+    desTEController.dispose();
   }
 }
