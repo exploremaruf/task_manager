@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_manager/utils/app_button.dart';
 import 'package:text_divider/text_divider.dart';
 
 import '../../../constant/app_colors.dart';
@@ -29,6 +30,21 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
 
   bool _isPasswordhidden = true;
 
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    _firstNameTEcontroller.dispose();
+    _lastNameTEcontroller.dispose();
+    _emailTEcontroller.dispose();
+    _addressTEcontroller.dispose();
+    _passwordTEcontroller.dispose();
+    _confirmpasswordTEcontroller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -40,69 +56,83 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
           des: 'Join Task Manager today — organize better, work smarter, and stay in control of your day.',
         ),
         SizedBox(height: 23),
-        AppInputFields(
-          controller: _firstNameTEcontroller,
-          label: 'First Name',
-          hinttext: 'e.g. Kristin',
-        ),
-        SizedBox(height: 23),
-        AppInputFields(
-          controller: _lastNameTEcontroller,
-          label: 'Last Name',
-          hinttext: 'e.g. Cooper',
-        ),
-        SizedBox(height: 23),
-        AppInputFields(
-          controller: _emailTEcontroller,
-          label: 'Email Address',
-          hinttext: 'e.g. kristin.cooper@example.com',
-        ),
-        SizedBox(height: 23),
-        AppInputFields(
-          controller: _addressTEcontroller,
-          label: 'Address',
-          hinttext: 'e.g. 1234 Elm Street, Springfield, IL',
-        ),
-        SizedBox(height: 23),
-        AppInputFields(
-          controller: _passwordTEcontroller,
-          label: 'PassWord',
-          hinttext: 'Enter your password',
-          obsecure: _isPasswordhidden,
-          sufixicon: IconButton(
-            onPressed: () {
-              setState(() {
-                _isPasswordhidden = !_isPasswordhidden;
-              });
-            },
-            icon: Icon(
-              _isPasswordhidden
-                  ? Icons.visibility_off_outlined
-                  : Icons.visibility_outlined,
-            ),
-            iconSize: 20,
-            color: Colors.grey,
-          ),
-        ),
-        SizedBox(height: 23),
-        AppInputFields(
-          controller: _confirmpasswordTEcontroller,
-          label: ' Confirm password',
-          hinttext: 'confirm password',
-          obsecure: _isPasswordhidden,
-          sufixicon: IconButton(
-            onPressed: () {
-              setState(() {
-                _isPasswordhidden = !_isPasswordhidden;
-              });
-            },
-            icon: Icon(
-              _isPasswordhidden
-                  ? Icons.visibility_off_outlined
-                  : Icons.visibility_outlined,
-            ),
-            iconSize: 20,
-            color: Colors.grey,
+        Form(
+          key: _formkey,
+          child: Column(
+            children: [
+              AppInputFields(
+                controller: _firstNameTEcontroller,
+                label: 'First Name',
+                hinttext: 'e.g. Kristin',
+                errormessage: 'Input your first name',
+              ),
+              SizedBox(height: 23),
+              AppInputFields(
+                controller: _lastNameTEcontroller,
+                label: 'Last Name',
+                hinttext: 'e.g. Cooper',
+                errormessage: 'Input your last name',
+              ),
+              SizedBox(height: 23),
+              AppInputFields(
+                controller: _emailTEcontroller,
+                label: 'Email Address',
+                hinttext: 'e.g. kristin.cooper@example.com',
+                errormessage: 'Input your email',
+              ),
+              SizedBox(height: 23),
+              AppInputFields(
+                controller: _addressTEcontroller,
+                label: 'Address',
+                hinttext: 'e.g. 1234 Elm Street, Springfield, IL',
+                errormessage: 'Input your address',
+              ),
+              SizedBox(height: 23),
+              AppInputFields(
+                controller: _passwordTEcontroller,
+                label: 'PassWord',
+                hinttext: 'Enter your password',
+                errormessage: 'Input your password',
+
+                obsecure: _isPasswordhidden,
+                sufixicon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordhidden = !_isPasswordhidden;
+                    });
+                  },
+                  icon: Icon(
+                    _isPasswordhidden
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
+                  ),
+                  iconSize: 20,
+                  color: Colors.grey,
+                ),
+              ),
+              SizedBox(height: 23),
+              AppInputFields(
+                controller: _confirmpasswordTEcontroller,
+                label: ' Confirm password',
+                hinttext: 'confirm password',
+
+                obsecure: _isPasswordhidden,
+                sufixicon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordhidden = !_isPasswordhidden;
+                    });
+                  },
+                  icon: Icon(
+                    _isPasswordhidden
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
+                  ),
+                  iconSize: 20,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
           ),
         ),
         SizedBox(height: 6),
@@ -122,14 +152,16 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
               side: BorderSide(color: AppColors.primary, width: 2),
             ),
 
-            Expanded(child: Text(
-              'I agree to the Terms & Conditions and Privacy Policy.',
-              style: GoogleFonts.poppins(
-                fontSize: 12,
-                color: AppColors.semiprimarytext,
-                fontWeight: FontWeight.w400,
+            Expanded(
+              child: Text(
+                'I agree to the Terms & Conditions and Privacy Policy.',
+                style: GoogleFonts.poppins(
+                  fontSize: 12,
+                  color: AppColors.semiprimarytext,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),)
+            ),
           ],
         ),
         SizedBox(height: 23),
@@ -159,7 +191,13 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
             ),
           ],
         ),
-
+        SizedBox(height: 23),
+        AppButton(
+          title: 'Continue',
+          ontap: () {
+            if (_formkey.currentState!.validate()) {}
+          },
+        ),
       ],
     );
   }

@@ -39,6 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   motion_tab_bar_v2: ^3.0.0
   flutter_easy_faq: ^1.0.1
+  http: ^1.6.0
 
 
 dev_dependencies:

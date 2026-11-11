@@ -5,6 +5,7 @@ import 'package:task_manager/utils/app_button.dart';
 import 'package:task_manager/utils/app_input_fields.dart';
 import 'package:task_manager/utils/auth_screen_des.dart';
 import 'package:task_manager/utils/auth_screen_title.dart';
+import 'package:task_manager/utils/dashboard.dart';
 import 'package:task_manager/views/auth_view/verify_otp_view.dart';
 
 class VerifyYourEmailView extends StatelessWidget {
@@ -28,7 +29,7 @@ class VerifyYourEmailView extends StatelessWidget {
               AppInputFields(label: 'Email', hinttext: 'michelle.rivera@example.com'),
               SizedBox(height: 70,),
               AppButton(title: 'Send', ontap: (){
-                Get.to(VerifyOtpView());
+                      Get.to(Dashboard());
 
               })
 
