@@ -12,6 +12,7 @@ class AppInputFields extends StatefulWidget {
   final bool? obsecure;
   final int? minlines;
   final int? maxlines;
+  final String? errormessage;
 
   const AppInputFields({
     super.key,
@@ -23,6 +24,7 @@ class AppInputFields extends StatefulWidget {
     this.obsecure,
     this.maxlines = 1,
     this.minlines = 1,
+    this.errormessage,
   });
 
   @override
@@ -46,8 +48,14 @@ class _AppInputFieldsState extends State<AppInputFields> {
 
         const SizedBox(height: 6),
 
-        TextField(
+        TextFormField(
           controller: widget.controller,
+          validator: (String? value) {
+            if (value == null || value.trim().isEmpty) {
+              return widget.errormessage ?? 'This field is required';
+            }
+            return null;
+          },
           obscureText: widget.obsecure ?? false,
           maxLines: widget.maxlines,
           minLines: widget.minlines,
@@ -58,7 +66,6 @@ class _AppInputFieldsState extends State<AppInputFields> {
             hintText: widget.hinttext,
             prefixIcon: widget.prefixicon,
             suffixIcon: widget.sufixicon,
-            border: const OutlineInputBorder(),
           ),
         ),
       ],

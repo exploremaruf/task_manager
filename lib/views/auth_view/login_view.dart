@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -10,6 +12,7 @@ import 'package:task_manager/utils/auth_screen_title.dart';
 import 'package:task_manager/utils/dashboard.dart';
 import 'package:task_manager/views/auth_view/signup_view.dart';
 import 'package:text_divider/text_divider.dart';
+import 'package:http/http.dart' as http;
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -23,6 +26,7 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController passwordTEcontroller = TextEditingController();
   bool _isRememberd = false;
   bool _isPasswordhidden = true;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,31 +48,39 @@ class _LoginViewState extends State<LoginView> {
                     des: 'Stay productive and take control of your tasks.',
                   ),
                   Gap(23),
-                  AppInputFields(
-                    controller: emailTEcontroller,
-                    label: 'Email Address',
-                    hinttext: 'Enter your email',
-                  ),
-                  Gap(23),
-                  AppInputFields(
-                    obsecure: _isPasswordhidden,
-                    sufixicon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _isPasswordhidden = !_isPasswordhidden;
-                        });
-                      },
-                      icon: Icon(
-                        _isPasswordhidden
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
-                      ),
-                      color: Colors.grey,
-                      iconSize: 20,
+                  Form(
+                    key: _formKey,
+
+                    child: Column(
+                      children: [
+                        AppInputFields(
+                          controller: emailTEcontroller,
+                          label: 'Email Address',
+                          hinttext: 'Enter your email',
+                        ),
+                        Gap(23),
+                        AppInputFields(
+                          obsecure: _isPasswordhidden,
+                          sufixicon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _isPasswordhidden = !_isPasswordhidden;
+                              });
+                            },
+                            icon: Icon(
+                              _isPasswordhidden
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                            ),
+                            color: Colors.grey,
+                            iconSize: 20,
+                          ),
+                          controller: passwordTEcontroller,
+                          label: 'Password',
+                          hinttext: 'Enter your password',
+                        ),
+                      ],
                     ),
-                    controller: passwordTEcontroller,
-                    label: 'Password',
-                    hinttext: 'Enter your password',
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -127,7 +139,9 @@ class _LoginViewState extends State<LoginView> {
                   AppButton(
                     title: 'Log In',
                     ontap: () {
-                      Get.off(Dashboard());
+                      if (_formKey.currentState!.validate()) {
+                        GetData();
+                      }
                     },
                   ),
                 ],
@@ -137,6 +151,21 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     );
+  }
+
+  Future GetData() async {
+    String email = emailTEcontroller.text.trim().toString();
+    String password = passwordTEcontroller.text.trim().toString();
+
+    final url = Uri.parse('https://taskmanagment.nahid.cc/api/v1//auth/signin');
+
+    final response = await http.post(
+      url,
+      headers: <String, String>{'Content-Type': 'application/json'},
+      body: jsonEncode(<String, dynamic>{'gmail': email, 'password': password}),
+    );
+
+    print(response.statusCode);
   }
 
   @override
