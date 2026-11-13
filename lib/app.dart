@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_manager/views/auth_view/verify_otp_view.dart';
 import 'package:task_manager/views/splash_view/splash_view.dart';
 
 import 'constant/app_colors.dart';
@@ -12,7 +13,7 @@ class TaskManager extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Task Manager',
-      home: SplashView(),
+      home: VerifyOtpView(),
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.cupertino,
       transitionDuration: const Duration(milliseconds: 350),
