@@ -453,14 +453,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.2"
-  pinput:
+  pin_code_fields:
     dependency: "direct main"
     description:
-      name: pinput
-      sha256: c41f42ee301505ae2375ec32871c985d3717bf8aee845620465b286e0140aad2
+      name: pin_code_fields
+      sha256: a85d02073e8f1f97dc3ff2303f81405e40bddb00129291dad922901d9003e691
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.2"
+    version: "10.1.1"
   platform:
     dependency: transitive
     description:
@@ -586,14 +586,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  universal_platform:
-    dependency: transitive
-    description:
-      name: universal_platform
-      sha256: "64e16458a0ea9b99260ceb5467a214c1f298d647c659af1bff6d3bf82536b1ec"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   vector_math:
     dependency: transitive
     description:
