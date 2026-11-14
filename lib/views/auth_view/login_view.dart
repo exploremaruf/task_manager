@@ -63,7 +63,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                         Gap(23),
                         AppInputFields(
-                          obsecure: _isPasswordhidden,
+                          obscureText: _isPasswordhidden,
                           sufixicon: IconButton(
                             onPressed: () {
                               setState(() {

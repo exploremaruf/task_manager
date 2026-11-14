@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_manager/constant/app_constants.dart';
 import 'package:task_manager/utils/app_button.dart';
 import 'package:text_divider/text_divider.dart';
 
@@ -65,6 +66,7 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
                 label: 'First Name',
                 hinttext: 'e.g. Kristin',
                 errormessage: 'Input your first name',
+
               ),
               SizedBox(height: 23),
               AppInputFields(
@@ -78,7 +80,16 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
                 controller: _emailTEcontroller,
                 label: 'Email Address',
                 hinttext: 'e.g. kristin.cooper@example.com',
-                errormessage: 'Input your email',
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (String? value){
+                  if (value?.trim().isEmpty==true){
+                    return 'Input your email';
+                  }
+                  if(AppConstants.emailRegExp.hasMatch(value!)==false){
+                    return 'Input Valid email adress';
+                  }
+                },
+
               ),
               SizedBox(height: 23),
               AppInputFields(
@@ -94,7 +105,7 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
                 hinttext: 'Enter your password',
                 errormessage: 'Input your password',
 
-                obsecure: _isPasswordhidden,
+                obscureText: _isPasswordhidden,
                 sufixicon: IconButton(
                   onPressed: () {
                     setState(() {
@@ -116,7 +127,7 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
                 label: ' Confirm password',
                 hinttext: 'confirm password',
 
-                obsecure: _isPasswordhidden,
+                obscureText: _isPasswordhidden,
                 sufixicon: IconButton(
                   onPressed: () {
                     setState(() {
