@@ -53,7 +53,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           children: [
             SizedBox(height: 19.5),
             AppInputFields(
-              obsecure: isobsecure,
+              obscureText: isobsecure,
               label: 'Type Password',
               hinttext: '',
               sufixicon: IconButton(
@@ -71,7 +71,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             ),
             SizedBox(height: 23),
             AppInputFields(
-              obsecure: isobsecure,
+              obscureText: isobsecure,
               label: 'New password',
               hinttext: '',
               sufixicon: IconButton(
@@ -89,7 +89,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             ),
             SizedBox(height: 23),
             AppInputFields(
-              obsecure: isobsecure,
+              obscureText: isobsecure,
               label: 'New Confirm password',
               hinttext: '',
               sufixicon: IconButton(

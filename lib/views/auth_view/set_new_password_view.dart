@@ -47,7 +47,7 @@ class _SetNewPasswordViewState extends State<SetNewPasswordView> {
               AppInputFields(
                 label: 'New Password',
                 hinttext: 'Enter your password',
-                obsecure: isObsecure,
+                obscureText: isObsecure,
                 sufixicon: IconButton(
                   onPressed: () {
                     setState(() {
@@ -67,7 +67,7 @@ class _SetNewPasswordViewState extends State<SetNewPasswordView> {
               AppInputFields(
                 label: 'New Confirm password',
                 hinttext: 'Confirm your password',
-                obsecure: true,
+                obscureText: true,
                 sufixicon: IconButton(
                   onPressed: () {
                     setState(() {
