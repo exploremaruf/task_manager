@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_manager/constant/app_constants.dart';
 import 'package:task_manager/utils/app_button.dart';
+import 'package:task_manager/utils/custom_loader.dart';
+import 'package:task_manager/views/auth_view/controller/signup_controller.dart';
 import 'package:text_divider/text_divider.dart';
 
 import '../../../constant/app_colors.dart';
@@ -32,6 +36,7 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
   bool _isPasswordhidden = true;
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final SignupController signupController = Get.put(SignupController());
 
   @override
   void dispose() {
@@ -66,7 +71,6 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
                 label: 'First Name',
                 hinttext: 'e.g. Kristin',
                 errormessage: 'Input your first name',
-
               ),
               SizedBox(height: 23),
               AppInputFields(
@@ -81,15 +85,14 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
                 label: 'Email Address',
                 hinttext: 'e.g. kristin.cooper@example.com',
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (String? value){
-                  if (value?.trim().isEmpty==true){
+                validator: (String? value) {
+                  if (value?.trim().isEmpty == true) {
                     return 'Input your email';
                   }
-                  if(AppConstants.emailRegExp.hasMatch(value!)==false){
+                  if (AppConstants.emailRegExp.hasMatch(value!) == false) {
                     return 'Input Valid email adress';
                   }
                 },
-
               ),
               SizedBox(height: 23),
               AppInputFields(
@@ -106,20 +109,6 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
                 errormessage: 'Input your password',
 
                 obscureText: _isPasswordhidden,
-                sufixicon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _isPasswordhidden = !_isPasswordhidden;
-                    });
-                  },
-                  icon: Icon(
-                    _isPasswordhidden
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                  ),
-                  iconSize: 20,
-                  color: Colors.grey,
-                ),
               ),
               SizedBox(height: 23),
               AppInputFields(
@@ -128,20 +117,20 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
                 hinttext: 'confirm password',
 
                 obscureText: _isPasswordhidden,
-                sufixicon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _isPasswordhidden = !_isPasswordhidden;
-                    });
-                  },
-                  icon: Icon(
-                    _isPasswordhidden
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                  ),
-                  iconSize: 20,
-                  color: Colors.grey,
-                ),
+                // sufixicon: IconButton(
+                //   onPressed: () {
+                //     setState(() {
+                //       _isPasswordhidden = !_isPasswordhidden;
+                //     });
+                //   },
+                //   icon: Icon(
+                //     _isPasswordhidden
+                //         ? Icons.visibility_off_outlined
+                //         : Icons.visibility_outlined,
+                //   ),
+                //   iconSize: 20,
+                //   color: Colors.grey,
+                // ),
               ),
             ],
           ),
@@ -203,10 +192,43 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
           ],
         ),
         SizedBox(height: 23),
-        AppButton(
-          title: 'Continue',
-          ontap: () {
-            if (_formkey.currentState!.validate()) {}
+
+        GetBuilder<SignupController>(
+          builder: (controller) {
+            return Visibility(
+              visible: !controller.isloading,
+              replacement: Center(child: CustomLoader()),
+              child: AppButton(
+                title: 'Continue',
+                ontap: () {
+                  if (_formkey.currentState!.validate()) {
+                    String first_name = _firstNameTEcontroller.text.trim();
+                    String last_name = _lastNameTEcontroller.text.trim();
+                    String gmail = _emailTEcontroller.text.trim();
+                    String address = _addressTEcontroller.text.trim();
+                    String password = _passwordTEcontroller.text;
+
+                    if (!_isagree) {
+                      Get.snackbar(
+                        'Warning',
+                        'Please agree to Terms & Conditions',
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
+                      return;
+                    }
+
+                    controller.signup(
+                      first_name: first_name,
+                      last_name: last_name,
+                      gmail: gmail,
+                      address: address,
+                      password: password,
+                    );
+                  }
+                },
+              ),
+            );
           },
         ),
       ],
