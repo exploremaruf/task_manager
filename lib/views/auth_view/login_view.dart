@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -9,11 +7,10 @@ import 'package:task_manager/utils/app_button.dart';
 import 'package:task_manager/utils/app_input_fields.dart';
 import 'package:task_manager/utils/auth_screen_des.dart';
 import 'package:task_manager/utils/auth_screen_title.dart';
-import 'package:task_manager/utils/dashboard.dart';
+import 'package:task_manager/utils/custom_loader.dart';
 import 'package:task_manager/views/auth_view/controller/login_controller.dart';
 import 'package:task_manager/views/auth_view/signup_view.dart';
 import 'package:text_divider/text_divider.dart';
-import 'package:http/http.dart' as http;
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -26,21 +23,18 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController emailTEcontroller = TextEditingController();
   final TextEditingController passwordTEcontroller = TextEditingController();
   bool _isRememberd = false;
-  bool _isPasswordhidden = true;
+  final bool _isPasswordhidden = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final LoginController loginController = LoginController();
-  bool isloading = false;
+  final LoginController loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,20 +58,7 @@ class _LoginViewState extends State<LoginView> {
                         Gap(23),
                         AppInputFields(
                           obscureText: _isPasswordhidden,
-                          sufixicon: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                _isPasswordhidden = !_isPasswordhidden;
-                              });
-                            },
-                            icon: Icon(
-                              _isPasswordhidden
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
-                            ),
-                            color: Colors.grey,
-                            iconSize: 20,
-                          ),
+
                           controller: passwordTEcontroller,
                           label: 'Password',
                           hinttext: 'Enter your password',
@@ -139,48 +120,40 @@ class _LoginViewState extends State<LoginView> {
                     ],
                   ),
                   Gap(23),
-                  Visibility(
-                    visible: !isloading,
-                    replacement: Center(child: CircularProgressIndicator()),
-                    child: AppButton(
-                      title: 'Log In',
-                      ontap: () async {
-                        if (_formKey.currentState!.validate()) {
-                          isloading = true;
-                          setState(() {});
-                          await loginController.login(
-                            email: emailTEcontroller.text.trim(),
-                            password: passwordTEcontroller.text.trim(),
-                          );
-                          isloading = false;
-                          setState(() {});
-                        }
-                      },
-                    ),
+
+                  GetBuilder<LoginController>(
+                    builder: (controller) {
+                      return Visibility(
+                        visible: !controller.isloading,
+                        replacement: Center(child: CustomLoader()),
+                        child: AppButton(
+                          title: 'Log In',
+                          ontap: () {
+                            if (_formKey.currentState!.validate()) {
+                              String email = emailTEcontroller.text.trim();
+                              String password = passwordTEcontroller.text
+                                  .trim();
+
+                              controller.login(
+                                email: email,
+                                password: password,
+                              );
+                            }
+                          },
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  // Future getData() async {
-  //   String email = emailTEcontroller.text.trim().toString();
-  //   String password = passwordTEcontroller.text.trim().toString();
-  //
-  //   final url = Uri.parse('https://taskmanagment.nahid.cc/api/v1//auth/signin');
-  //
-  //   final response = await http.post(
-  //     url,
-  //     headers: <String, String>{'Content-Type': 'application/json'},
-  //     body: jsonEncode(<String, dynamic>{'gmail': email, 'password': password}),
-  //   );
-  //
-  //   print(response.statusCode);
-  // }
+
 
   @override
   void dispose() {
