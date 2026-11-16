@@ -9,7 +9,9 @@ import '../../utils/auth_screen_des.dart';
 import '../../utils/auth_screen_title.dart';
 
 class VerifyOtpView extends StatelessWidget {
-  const VerifyOtpView({super.key});
+  final String email;
+
+  const VerifyOtpView({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +26,8 @@ class VerifyOtpView extends StatelessWidget {
               children: [
                 const AuthScreenTitle(title: '6-digit code'),
                 const SizedBox(height: 8),
-                const AuthScreenDes(
-                  des: 'Please enter the code we\'ve sent to michelle.rivera@example.com',
+                AuthScreenDes(
+                  des: 'Please enter the code we\'ve sent to ${email}',
                 ),
                 const SizedBox(height: 23),
                 Center(
@@ -59,7 +61,8 @@ class VerifyOtpView extends StatelessWidget {
                 AppButton(
                   title: 'Send',
                   ontap: () {
-                    Get.to(SetNewPasswordView());
+                    // Get.to(SetNewPasswordView());
+                    print(email);
                   },
                 ),
               ],
