@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/constant/app_url.dart';
 import 'package:http/http.dart';
+import 'package:task_manager/constant/localstorage.dart';
 
 import '../../../utils/dashboard.dart';
 
@@ -28,7 +29,13 @@ class LoginController extends GetxController {
       final responsebody = jsonDecode(response.body);
 
       if (responsebody['success'] == true) {
-        Get.to(Dashboard());
+        String token = responsebody['data']['access_token'];
+        print("Token: $token");
+
+        Localstorage.saveToken(token);
+
+        Get.offAll(Dashboard());
+        print(token);
       } else {
         Get.snackbar(
           'Error',

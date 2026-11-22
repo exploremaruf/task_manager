@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/constant/app_colors.dart';
+import 'package:task_manager/constant/localstorage.dart';
 import 'package:task_manager/utils/custom_text.dart';
 import 'package:task_manager/views/account_setting/account_setting.dart';
+import 'package:task_manager/views/auth_view/login_view.dart';
 import 'package:task_manager/views/faq_view/help_view.dart';
 import 'package:task_manager/views/myprofile_view/myprofile_view.dart';
 import 'package:task_manager/views/privacy_policy_view/privacy_policy_view.dart';
@@ -48,7 +50,7 @@ class _ProfileBodyState extends State<ProfileBody> {
           icon: Icons.article,
           title: 'Terms & Condition',
           ontap: () {
-            Get.to(TermsAndConditionView());
+            // Get.to(TermsAndConditionView());
           },
         ),
         ProfileItemTile(
@@ -66,7 +68,11 @@ class _ProfileBodyState extends State<ProfileBody> {
           },
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Localstorage.deleteToken();
+            if (!mounted) return;
+            Get.offAll(LoginView());
+          },
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),

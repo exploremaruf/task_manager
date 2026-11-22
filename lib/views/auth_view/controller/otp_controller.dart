@@ -19,7 +19,7 @@ class OTPController extends GetxController {
 
     print('Otp function called');
     try {
-      var uri = Uri.parse(AppUrl.verifyregistrationOTP);
+      var uri = Uri.parse(AppUrl.verifyRegistrationOTP);
 
       print('Sending request...');
 

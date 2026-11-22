@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/constant/app_url.dart';
 import 'package:http/http.dart';
@@ -41,7 +42,7 @@ class SignupController extends GetxController {
         Get.snackbar('Error', responsebody['message']);
       }
     } catch (e) {
-      print('Error: $e');
+      debugPrint('Error: $e');
     } finally {
       isloading = false;
       update();
