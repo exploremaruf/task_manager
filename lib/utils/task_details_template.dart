@@ -119,9 +119,9 @@ class TaskDetailsTemplate extends StatelessWidget {
                                       context: context,
                                       barrierDismissible: false,
                                       builder: (context) {
-                                        return const WarningDialog(
+                                        return  WarningDialog(
                                           title: 'Warning!',
-                                          message: 'Are you sure you want to delete?',
+                                          message: 'Are you sure you want to delete?', onConfirm: () {  },
                                         );
                                       },
                                     );
