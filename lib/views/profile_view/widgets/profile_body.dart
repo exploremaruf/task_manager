@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/constant/localstorage.dart';
 import 'package:task_manager/utils/custom_text.dart';
+import 'package:task_manager/utils/dialog_template.dart';
 import 'package:task_manager/views/account_setting/account_setting.dart';
 import 'package:task_manager/views/auth_view/login_view.dart';
 import 'package:task_manager/views/faq_view/help_view.dart';
@@ -69,9 +70,17 @@ class _ProfileBodyState extends State<ProfileBody> {
         ),
         GestureDetector(
           onTap: () {
-            Localstorage.deleteToken();
-            if (!mounted) return;
-            Get.offAll(LoginView());
+            Get.dialog(WarningDialog(
+              title: 'Are you sure you want to log out?',
+              message: 'You will be logged out from the app.',
+              onConfirm: () {
+                Localstorage.deleteToken();
+                if (!mounted) return;
+                Get.offAll(LoginView());
+              },
+            ));
+
+
           },
           child: Card(
             shape: RoundedRectangleBorder(

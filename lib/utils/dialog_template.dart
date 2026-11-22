@@ -5,8 +5,9 @@ import 'package:task_manager/constant/app_colors.dart';
 class WarningDialog extends StatelessWidget {
   final String title;
   final String message;
+  final VoidCallback onConfirm;
 
-  const WarningDialog({super.key, required this.title, required this.message});
+  const WarningDialog({super.key, required this.title, required this.message, required this.onConfirm});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class WarningDialog extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: AppColors.primarytext,
               ),
@@ -49,7 +50,7 @@ class WarningDialog extends StatelessWidget {
               message,
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
-                fontSize: 12,
+                fontSize: 10,
                 height: 1.2,
                 color: AppColors.secondarytext,
               ),
@@ -90,9 +91,7 @@ class WarningDialog extends StatelessWidget {
                     height: 29,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pop(context);
-
-                        // Delete account logic here
+                        onConfirm();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
