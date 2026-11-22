@@ -7,6 +7,7 @@ import 'package:task_manager/views/home_view/model/task_model.dart';
 
 import '../../constant/app_colors.dart';
 import '../../utils/custom_text.dart';
+import 'controller/add_task_controller.dart';
 
 class AddTaskView extends StatefulWidget {
   const AddTaskView({super.key});
@@ -18,6 +19,7 @@ class AddTaskView extends StatefulWidget {
 class _AddTaskViewState extends State<AddTaskView> {
   final TextEditingController titleTEController = TextEditingController();
   final TextEditingController desTEController = TextEditingController();
+  AddTaskController addTaskController = AddTaskController();
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +73,13 @@ class _AddTaskViewState extends State<AddTaskView> {
                   AppButton(
                     title: 'Save Task',
                     ontap: () {
-                      setState(() {
-                        TaskModel.tasklist.add({
-                          'title': titleTEController.text.trim().toString(),
-                          'description': desTEController.text.trim().toString(),
-                        });
-                      });
+                      String title = titleTEController.text.trim();
+                      String description = desTEController.text.trim();
+                      addTaskController.createNewTask(
+                        title: title,
+                        description: description,
+                      );
 
-                      return showToast();
                     },
                   ),
                 ],

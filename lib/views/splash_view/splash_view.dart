@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager/constant/localstorage.dart';
+import 'package:task_manager/utils/dashboard.dart';
 import 'package:task_manager/views/onboarding_view/onboarding_1_view/onboarding_1_view.dart';
 
 import '../../constant/app_assets.dart';
@@ -18,8 +20,20 @@ class _SplashViewState extends State<SplashView> {
     super.initState();
 
     Future.delayed(Duration(seconds: 2), () {
-      Get.off(Onboarding1View());
+      if (!mounted) return;
+      checkToken();
     });
+  }
+
+  Future<void> checkToken() async {
+    String? token = await Localstorage.getToken();
+    if (!mounted) return;
+
+    if (token != null && token.isNotEmpty) {
+      Get.offAll(Dashboard());
+    } else {
+      Get.offAll(Onboarding1View());
+    }
   }
 
   @override
