@@ -28,7 +28,6 @@ class _MyprofileViewState extends State<MyprofileView> {
       await controller.getCurrentProfile();
 
       print(controller.profile?.data.firstName);
-
     } catch (e) {
       print('Error fetching current profile: $e');
     } finally {
@@ -99,29 +98,31 @@ class _MyprofileViewState extends State<MyprofileView> {
         visible: !isloading,
         replacement: Center(child: CircularProgressIndicator()),
         child: Center(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              SizedBox(height: 20),
-              MyprofileHeader(name: profiledata?.firstName??'',),
-              SizedBox(height: 16),
-              MyprofileItemTile(
-                icon: Icons.account_circle_outlined,
-                title: profiledata?.firstName ?? "",
-              ),
-              MyprofileItemTile(
-                icon: Icons.alternate_email_outlined,
-                title: profiledata?.gmail ?? '',
-              ),
-              MyprofileItemTile(
-                icon: Icons.pin_drop_outlined,
-                title: profiledata?.address ?? '',
-              ),
-            ],
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                SizedBox(height: 20),
+                MyprofileHeader(name: profiledata?.firstName ?? ''),
+                SizedBox(height: 16),
+                MyprofileItemTile(
+                  icon: Icons.account_circle_outlined,
+                  title:
+                      '${profiledata?.firstName ?? ''} ${profiledata?.lastName ?? ''}',
+                ),
+                MyprofileItemTile(
+                  icon: Icons.alternate_email_outlined,
+                  title: profiledata?.gmail ?? '',
+                ),
+                MyprofileItemTile(
+                  icon: Icons.pin_drop_outlined,
+                  title: profiledata?.address ?? '',
+                ),
+              ],
+            ),
           ),
         ),
-      ),)
+      ),
     );
   }
 }
