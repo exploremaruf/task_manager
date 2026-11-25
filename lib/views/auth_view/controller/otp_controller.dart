@@ -6,6 +6,8 @@ import 'package:task_manager/constant/app_url.dart';
 import 'package:http/http.dart';
 import 'package:task_manager/utils/dashboard.dart';
 
+import '../../../constant/localstorage.dart';
+
 class OTPController extends GetxController {
   bool isloading = false;
 
@@ -17,11 +19,8 @@ class OTPController extends GetxController {
     isloading = true;
     update();
 
-    print('Otp function called');
     try {
       var uri = Uri.parse(AppUrl.verifyRegistrationOTP);
-
-      print('Sending request...');
 
       var response = await post(
         uri,
@@ -31,20 +30,22 @@ class OTPController extends GetxController {
 
       final responsebody = jsonDecode(response.body);
 
-      if (responsebody['success'] == false) {
+      if (responsebody['success'] == true) {
+        String token = responsebody['data']['access_token'];
+        Localstorage.saveToken(token);
+        var userdata = responsebody['data']['user'];
+        Localstorage.saveUserInfo(userdata);
+        Get.to(Dashboard());
+      } else {
         Get.snackbar(
           'Error',
           responsebody['message'],
           backgroundColor: Colors.red,
           colorText: Colors.white,
         );
-      } else {
-        Get.to(Dashboard());
       }
-
-      print(response.statusCode);
     } catch (e) {
-      print('Error: $e');
+      debugPrint('Error: $e');
     } finally {
       isloading = false;
       update();
