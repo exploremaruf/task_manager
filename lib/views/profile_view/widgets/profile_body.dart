@@ -10,7 +10,6 @@ import 'package:task_manager/views/faq_view/help_view.dart';
 import 'package:task_manager/views/myprofile_view/myprofile_view.dart';
 import 'package:task_manager/views/privacy_policy_view/privacy_policy_view.dart';
 import 'package:task_manager/views/profile_view/widgets/profile_item_tile.dart';
-import 'package:task_manager/views/terms_and_condition_view/terms_and_condition_view.dart';
 
 class ProfileBody extends StatefulWidget {
   const ProfileBody({super.key});
@@ -70,17 +69,17 @@ class _ProfileBodyState extends State<ProfileBody> {
         ),
         GestureDetector(
           onTap: () {
-            Get.dialog(WarningDialog(
-              title: 'Are you sure you want to log out?',
-              message: 'You will be logged out from the app.',
-              onConfirm: () {
-                Localstorage.deleteToken();
-                if (!mounted) return;
-                Get.offAll(LoginView());
-              },
-            ));
-
-
+            Get.dialog(
+              WarningDialog(
+                title: 'Are you sure you want to log out?',
+                message: 'You will be logged out from the app.',
+                onConfirm: () {
+                  Localstorage.deleteAll();
+                  if (!mounted) return;
+                  Get.offAll(LoginView());
+                },
+              ),
+            );
           },
           child: Card(
             shape: RoundedRectangleBorder(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:task_manager/constant/app_assets.dart';
 import 'package:task_manager/constant/app_colors.dart';
+import 'package:task_manager/constant/localstorage.dart';
 import 'package:task_manager/utils/custom_text.dart';
 import 'package:task_manager/utils/task_item.dart';
 import 'package:task_manager/views/home_view/model/task_model.dart';
@@ -14,6 +15,22 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  Map<String, dynamic>? user;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadUserInfo();
+  }
+
+  Future<void> loadUserInfo() async {
+    user = await Localstorage.getUserInfo();
+    setState(() {
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +51,9 @@ class _HomeViewState extends State<HomeView> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Hello Mojahid',
-                        style: TextStyle(
+                      Text(
+                        'Hello ${user?['first_name']??'user'} ',
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
