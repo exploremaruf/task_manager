@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/utils/app_button.dart';
 import 'package:task_manager/utils/app_input_fields.dart';
-import 'package:task_manager/views/account_setting/account_setting.dart';
+import 'package:task_manager/utils/custom_loader.dart';
+import 'package:task_manager/views/change_password/change_password_controller.dart';
 
 import '../../utils/custom_text.dart';
 
@@ -17,6 +18,17 @@ class ChangePassword extends StatefulWidget {
 class _ChangePasswordState extends State<ChangePassword> {
   bool isobsecure = true;
 
+  final TextEditingController oldpasswordController = TextEditingController();
+  final TextEditingController newpasswordController = TextEditingController();
+  final TextEditingController confirmpasswordController =
+      TextEditingController();
+
+  final ChangePasswordController _changePasswordController = Get.put(
+    ChangePasswordController(),
+  );
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +38,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         leading: Transform.translate(
           offset: Offset(16, 0),
           child: GestureDetector(
-            onTap:()=>Get.back(),
+            onTap: () => Get.back(),
             child: CircleAvatar(
               backgroundColor: AppColors.textfieldcolor,
 
@@ -51,67 +63,93 @@ class _ChangePasswordState extends State<ChangePassword> {
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
-            SizedBox(height: 19.5),
-            AppInputFields(
-              obscureText: isobsecure,
-              label: 'Type Password',
-              hinttext: '',
-              sufixicon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    isobsecure = !isobsecure;
-                  });
-                },
-                icon: Icon(
-                  isobsecure
-                      ? Icons.visibility_off_outlined
-                      : Icons.visibility_outlined,
-                ),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  SizedBox(height: 19.5),
+                  AppInputFields(
+                    controller: oldpasswordController,
+                    obscureText: isobsecure,
+                    label: 'Type Password',
+                    hinttext: '',
+
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter current password';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 23),
+                  AppInputFields(
+                    controller: newpasswordController,
+                    obscureText: isobsecure,
+                    label: 'New password',
+                    hinttext: '',
+
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter new password';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 23),
+                  AppInputFields(
+                    controller: confirmpasswordController,
+                    obscureText: isobsecure,
+                    label: 'New Confirm password',
+                    hinttext: '',
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please confirm password';
+                      }
+                      return null;
+                    },
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 23),
-            AppInputFields(
-              obscureText: isobsecure,
-              label: 'New password',
-              hinttext: '',
-              sufixicon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    isobsecure = !isobsecure;
-                  });
-                },
-                icon: Icon(
-                  isobsecure
-                      ? Icons.visibility_off_outlined
-                      : Icons.visibility_outlined,
-                ),
-              ),
+
+            GetBuilder<ChangePasswordController>(
+              builder: (controller) {
+                return Visibility(
+                  visible: !controller.isloading,
+                  replacement: Center(child: CustomLoader()),
+
+                  child: AppButton(
+                    title: 'Update',
+                    ontap: () {
+                      if (_formKey.currentState!.validate()) {
+                        String oldpassword = oldpasswordController.text;
+                        String newpassword = newpasswordController.text;
+                        String confirmpassword = confirmpasswordController.text;
+
+                        controller.changepassword(
+                          oldpassword,
+                          newpassword,
+                          confirmpassword,
+                        );
+                      }
+                    },
+                  ),
+                );
+              },
             ),
-            SizedBox(height: 23),
-            AppInputFields(
-              obscureText: isobsecure,
-              label: 'New Confirm password',
-              hinttext: '',
-              sufixicon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    isobsecure = !isobsecure;
-                  });
-                },
-                icon: Icon(
-                  isobsecure
-                      ? Icons.visibility_off_outlined
-                      : Icons.visibility_outlined,
-                ),
-              ),
-            ),
-            SizedBox(height: 23),
-            AppButton(title: 'Update', ontap: () {
-              Get.off(AccountSetting());
-            }),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    oldpasswordController.dispose();
+    newpasswordController.dispose();
+    confirmpasswordController.dispose();
   }
 }

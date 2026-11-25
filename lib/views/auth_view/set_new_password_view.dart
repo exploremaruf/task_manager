@@ -48,40 +48,14 @@ class _SetNewPasswordViewState extends State<SetNewPasswordView> {
                 label: 'New Password',
                 hinttext: 'Enter your password',
                 obscureText: isObsecure,
-                sufixicon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isObsecure = !isObsecure;
-                    });
-                  },
-                  icon: Icon(
-                    isObsecure
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                  ),
-                  iconSize: 20,
-                  color: Colors.grey,
-                ),
+
               ),
               SizedBox(height: 23),
               AppInputFields(
                 label: 'New Confirm password',
                 hinttext: 'Confirm your password',
                 obscureText: true,
-                sufixicon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isObsecure = !isObsecure;
-                    });
-                  },
-                  icon: Icon(
-                    isObsecure
-                        ? Icons.visibility_off_outlined
-                        : Icons.visibility_outlined,
-                  ),
-                  iconSize: 20,
-                  color: Colors.grey,
-                ),
+
               ),
               SizedBox(height: 23),
               AppButton(

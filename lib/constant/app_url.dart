@@ -8,4 +8,6 @@ class AppUrl {
   static const String createTask = '$baseUrl/tasks';
   static const String currentprofile = '$baseUrl/user/profile';
   static const String updateprofile = '$baseUrl/user/profile';
+  static const String changepassword = '$baseUrl/user/change-password';
+  static const String deleteaccount = '$baseUrl/user/account';
 }
