@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/utils/app_button.dart';
 import 'package:task_manager/utils/app_input_fields.dart';
+import 'package:task_manager/utils/custom_loader.dart';
 import 'package:task_manager/views/add_task_view/widgets/success_toaster.dart';
+import 'package:task_manager/views/auth_view/controller/login_controller.dart';
 import 'package:task_manager/views/home_view/model/task_model.dart';
 
 import '../../constant/app_colors.dart';
@@ -19,7 +21,7 @@ class AddTaskView extends StatefulWidget {
 class _AddTaskViewState extends State<AddTaskView> {
   final TextEditingController titleTEController = TextEditingController();
   final TextEditingController desTEController = TextEditingController();
-  AddTaskController addTaskController = AddTaskController();
+  final AddTaskController addTaskController = Get.put(AddTaskController());
 
   @override
   Widget build(BuildContext context) {
@@ -70,16 +72,27 @@ class _AddTaskViewState extends State<AddTaskView> {
                     minlines: 3,
                   ),
                   SizedBox(height: 23),
-                  AppButton(
-                    title: 'Save Task',
-                    ontap: () {
-                      String title = titleTEController.text.trim();
-                      String description = desTEController.text.trim();
-                      addTaskController.createNewTask(
-                        title: title,
-                        description: description,
-                      );
+                  GetBuilder<AddTaskController>(
+                    builder: (controller) {
+                      return Visibility(
+                        visible: !addTaskController.isloading,
+                        replacement: Center(child: CustomLoader()),
 
+                        child: AppButton(
+                          title: 'Save Task',
+                          ontap: () async {
+                            String title = titleTEController.text.trim();
+                            String description = desTEController.text.trim();
+                            await addTaskController.createNewTask(
+                              title: title,
+                              description: description,
+                            );
+
+                            titleTEController.clear();
+                            desTEController.clear();
+                          },
+                        ),
+                      );
                     },
                   ),
                 ],

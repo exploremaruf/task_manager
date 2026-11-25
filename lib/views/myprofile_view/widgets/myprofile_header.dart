@@ -3,7 +3,12 @@ import 'package:task_manager/constant/app_assets.dart';
 import 'package:task_manager/utils/custom_text.dart';
 
 class MyprofileHeader extends StatelessWidget {
-  const MyprofileHeader({super.key});
+
+  final String name;
+
+  const MyprofileHeader({super.key, required this.name});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class MyprofileHeader extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10,),
-        CustomText(text: 'Mojahid',fontSize: 20,fontWeight: FontWeight.w500,)
+        CustomText(text: name,fontSize: 20,fontWeight: FontWeight.w500,)
       ],
     );
   }

@@ -31,8 +31,11 @@ class LoginController extends GetxController {
       if (responsebody['success'] == true) {
         String token = responsebody['data']['access_token'];
         print("Token: $token");
-
         Localstorage.saveToken(token);
+
+        var userdata = responsebody['data']['user'];
+        print('userinfo: $userdata');
+        Localstorage.saveUserInfo(userdata);
 
         Get.offAll(Dashboard());
         print(token);
