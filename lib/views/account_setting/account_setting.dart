@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager/views/account_setting/delete_account_view.dart';
 import 'package:task_manager/views/account_setting/widgets/account_setting_tile.dart';
 import 'package:task_manager/views/change_password/change_password.dart';
 
@@ -36,20 +37,7 @@ class AccountSetting extends StatelessWidget {
           fontWeight: FontWeight.w500,
           color: AppColors.primarytext,
         ),
-        actions: [
-          Transform.translate(
-            offset: Offset(0, 0),
-            child: CircleAvatar(
-              radius: 40,
-              backgroundColor: AppColors.textfieldcolor,
-              child: Icon(
-                Icons.border_color_outlined,
-                color: AppColors.primary,
-                size: 20,
-              ),
-            ),
-          ),
-        ],
+
         centerTitle: true,
       ),
       body: Padding(
@@ -70,7 +58,9 @@ class AccountSetting extends StatelessWidget {
               icon: Icons.person_remove_outlined,
               title: 'Delete Account',
               itemcolor: Colors.red,
-              ontap: () {},
+              ontap: () {
+                Get.to(DeleteAccountView());
+              },
               titlecolor: Colors.red,
             ),
           ],
