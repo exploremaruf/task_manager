@@ -26,9 +26,7 @@ class _HomeViewState extends State<HomeView> {
 
   Future<void> loadUserInfo() async {
     user = await Localstorage.getUserInfo();
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -52,7 +50,7 @@ class _HomeViewState extends State<HomeView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hello ${user?['first_name']??'user'} ',
+                        'Hello ${user?['first_name'] ?? 'user'} ',
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

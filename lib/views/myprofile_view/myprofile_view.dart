@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/constant/app_colors.dart';
+import 'package:task_manager/utils/custom_loader.dart';
 import 'package:task_manager/utils/custom_text.dart';
 import 'package:task_manager/views/edit_profile_view/edit_profile_view.dart';
 import 'package:task_manager/views/myprofile_view/controller/currentprofilecontroller.dart';
@@ -79,7 +80,14 @@ class _MyprofileViewState extends State<MyprofileView> {
           Transform.translate(
             offset: Offset(0, 0),
             child: GestureDetector(
-              onTap: () => Get.to(EditProfileView()),
+              onTap: () => Get.to(
+                EditProfileView(
+                  firstname: profiledata!.firstName,
+                  lastname: profiledata.lastName,
+                  emailaddress: profiledata.gmail,
+                  address: profiledata.address,
+                ),
+              ),
               child: CircleAvatar(
                 radius: 40,
                 backgroundColor: AppColors.textfieldcolor,
@@ -96,7 +104,7 @@ class _MyprofileViewState extends State<MyprofileView> {
       ),
       body: Visibility(
         visible: !isloading,
-        replacement: Center(child: CircularProgressIndicator()),
+        replacement: Center(child: CustomLoader()),
         child: Center(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
