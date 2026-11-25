@@ -7,4 +7,5 @@ class AppUrl {
   static const String termsAndCondition = '$baseUrl/terms-and-conditions';
   static const String createTask = '$baseUrl/tasks';
   static const String currentprofile = '$baseUrl/user/profile';
+  static const String updateprofile = '$baseUrl/user/profile';
 }
