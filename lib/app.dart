@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task_manager/views/auth_view/signup_view.dart';
-import 'package:task_manager/views/auth_view/verify_otp_view.dart';
 import 'package:task_manager/views/splash_view/splash_view.dart';
 
 import 'constant/app_colors.dart';
+import 'initial_binding.dart';
 
 class TaskManager extends StatelessWidget {
   const TaskManager({super.key});
@@ -13,6 +12,7 @@ class TaskManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: InitialBinding(),
       title: 'Task Manager',
       home: SplashView(),
       debugShowCheckedModeBanner: false,
