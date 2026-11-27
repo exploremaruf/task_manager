@@ -6,47 +6,45 @@ import 'package:task_manager/constant/app_url.dart';
 import 'package:http/http.dart';
 import 'package:task_manager/views/auth_view/verify_otp_view.dart';
 
-import '../../../constant/localstorage.dart';
-
 class SignupController extends GetxController {
-  bool isloading = false;
+  bool isLoading = false;
 
   Future<void> signup({
-    required String first_name,
-    required String last_name,
+    required String firstName,
+    required String lastName,
     required String gmail,
     required String address,
     required String password,
   }) async {
-    isloading = true;
+    isLoading = true;
     update();
-    print('signup function called');
+    debugPrint('signup function called');
     try {
       var uri = Uri.parse(AppUrl.signup);
-      print('Sending request...');
+      debugPrint('Sending request...');
       var response = await post(
         uri,
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'first_name': first_name,
-          'last_name': last_name,
+          'first_name': firstName,
+          'last_name': lastName,
           'gmail': gmail,
           'address': address,
           'password': password,
         }),
       );
 
-      final responsebody = jsonDecode(response.body);
+      final responseBody = jsonDecode(response.body);
 
-      if (responsebody['success'] == true) {
+      if (responseBody['success'] == true) {
         Get.to(VerifyOtpView(email: gmail));
       } else {
-        Get.snackbar('Error', responsebody['message']);
+        Get.snackbar('Error', responseBody['message']);
       }
     } catch (e) {
       debugPrint('Error: $e');
     } finally {
-      isloading = false;
+      isLoading = false;
       update();
     }
   }

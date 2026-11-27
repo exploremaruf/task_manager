@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class Localstorage {
-  static FlutterSecureStorage storage = new FlutterSecureStorage();
+class LocalStorage {
+  static FlutterSecureStorage storage = const FlutterSecureStorage();
 
   static Future<void> saveToken(String token) async {
     await storage.write(key: "_token", value: token);

@@ -14,7 +14,7 @@ class SetNewPasswordView extends StatefulWidget {
 }
 
 class _SetNewPasswordViewState extends State<SetNewPasswordView> {
-  bool isObsecure = true;
+  bool isObSecure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -47,15 +47,13 @@ class _SetNewPasswordViewState extends State<SetNewPasswordView> {
               AppInputFields(
                 label: 'New Password',
                 hinttext: 'Enter your password',
-                obscureText: isObsecure,
-
+                obscureText: isObSecure,
               ),
               SizedBox(height: 23),
               AppInputFields(
                 label: 'New Confirm password',
                 hinttext: 'Confirm your password',
                 obscureText: true,
-
               ),
               SizedBox(height: 23),
               AppButton(

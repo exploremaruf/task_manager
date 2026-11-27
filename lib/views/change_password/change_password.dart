@@ -16,16 +16,12 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-  bool isobsecure = true;
+  final bool _isObSecure = true;
 
-  final TextEditingController oldpasswordController = TextEditingController();
-  final TextEditingController newpasswordController = TextEditingController();
-  final TextEditingController confirmpasswordController =
+  final TextEditingController oldPasswordController = TextEditingController();
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
       TextEditingController();
-
-  final ChangePasswordController _changePasswordController = Get.put(
-    ChangePasswordController(),
-  );
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -69,8 +65,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                 children: [
                   SizedBox(height: 19.5),
                   AppInputFields(
-                    controller: oldpasswordController,
-                    obscureText: isobsecure,
+                    controller: oldPasswordController,
+                    obscureText: _isObSecure,
                     label: 'Type Password',
                     hinttext: '',
 
@@ -83,8 +79,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                   ),
                   SizedBox(height: 23),
                   AppInputFields(
-                    controller: newpasswordController,
-                    obscureText: isobsecure,
+                    controller: newPasswordController,
+                    obscureText: _isObSecure,
                     label: 'New password',
                     hinttext: '',
 
@@ -97,8 +93,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                   ),
                   SizedBox(height: 23),
                   AppInputFields(
-                    controller: confirmpasswordController,
-                    obscureText: isobsecure,
+                    controller: confirmPasswordController,
+                    obscureText: _isObSecure,
                     label: 'New Confirm password',
                     hinttext: '',
                     validator: (value) {
@@ -116,21 +112,21 @@ class _ChangePasswordState extends State<ChangePassword> {
             GetBuilder<ChangePasswordController>(
               builder: (controller) {
                 return Visibility(
-                  visible: !controller.isloading,
+                  visible: !controller.isLoading,
                   replacement: Center(child: CustomLoader()),
 
                   child: AppButton(
                     title: 'Update',
                     ontap: () {
                       if (_formKey.currentState!.validate()) {
-                        String oldpassword = oldpasswordController.text;
-                        String newpassword = newpasswordController.text;
-                        String confirmpassword = confirmpasswordController.text;
+                        String oldPassword = oldPasswordController.text;
+                        String newPassword = newPasswordController.text;
+                        String confirmPassword = confirmPasswordController.text;
 
-                        controller.changepassword(
-                          oldpassword,
-                          newpassword,
-                          confirmpassword,
+                        controller.changePassword(
+                          oldPassword,
+                          newPassword,
+                          confirmPassword,
                         );
                       }
                     },
@@ -148,8 +144,8 @@ class _ChangePasswordState extends State<ChangePassword> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    oldpasswordController.dispose();
-    newpasswordController.dispose();
-    confirmpasswordController.dispose();
+    oldPasswordController.dispose();
+    newPasswordController.dispose();
+    confirmPasswordController.dispose();
   }
 }

@@ -18,10 +18,6 @@ class DeleteAccountView extends StatefulWidget {
 }
 
 class _DeleteAccountViewState extends State<DeleteAccountView> {
-  final DeleteAccountController _deleteAccountController = Get.put(
-    DeleteAccountController(),
-  );
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTEcontroller = TextEditingController();
 

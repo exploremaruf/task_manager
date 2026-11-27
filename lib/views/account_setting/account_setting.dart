@@ -48,20 +48,20 @@ class AccountSetting extends StatelessWidget {
             AccountSettingTile(
               icon: Icons.lock_outline,
               title: 'Change Password',
-              itemcolor: AppColors.primary,
-              ontap: () {
+              itemColor: AppColors.primary,
+              onTap: () {
                 Get.to(ChangePassword());
               },
-              titlecolor: AppColors.primarytext,
+              titleColor: AppColors.primarytext,
             ),
             AccountSettingTile(
               icon: Icons.person_remove_outlined,
               title: 'Delete Account',
-              itemcolor: Colors.red,
-              ontap: () {
+              itemColor: Colors.red,
+              onTap: () {
                 Get.to(DeleteAccountView());
               },
-              titlecolor: Colors.red,
+              titleColor: Colors.red,
             ),
           ],
         ),

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:task_manager/views/auth_view/verify_your_email_view.dart';
 import 'package:task_manager/views/auth_view/widgets/signup_body_widget.dart';
 
 import '../../constant/app_colors.dart';
-import '../../utils/app_button.dart';
-
-import 'package:http/http.dart' as http;
 
 class SignupView extends StatefulWidget {
   const SignupView({super.key});
@@ -24,12 +19,7 @@ class _SignupViewState extends State<SignupView> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 96),
-            child: Column(
-              children: [
-                SignupBodyWidget(),
-
-              ],
-            ),
+            child: Column(children: [SignupBodyWidget()]),
           ),
         ),
       ),

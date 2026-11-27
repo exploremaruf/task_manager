@@ -3,9 +3,6 @@ import 'package:get/get.dart';
 import 'package:task_manager/utils/app_button.dart';
 import 'package:task_manager/utils/app_input_fields.dart';
 import 'package:task_manager/utils/custom_loader.dart';
-import 'package:task_manager/views/add_task_view/widgets/success_toaster.dart';
-import 'package:task_manager/views/auth_view/controller/login_controller.dart';
-import 'package:task_manager/views/home_view/model/task_model.dart';
 
 import '../../constant/app_colors.dart';
 import '../../utils/custom_text.dart';
@@ -21,7 +18,6 @@ class AddTaskView extends StatefulWidget {
 class _AddTaskViewState extends State<AddTaskView> {
   final TextEditingController titleTEController = TextEditingController();
   final TextEditingController desTEController = TextEditingController();
-  final AddTaskController addTaskController = Get.put(AddTaskController());
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +25,6 @@ class _AddTaskViewState extends State<AddTaskView> {
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background,
-        // leading: Transform.translate(
-        //   offset: Offset(16, 0),
-        //   child: GestureDetector(
-        //     onTap: ()=>Get.back(),
-        //     child: CircleAvatar(
-        //       backgroundColor: AppColors.textfieldcolor,
-        //       child: Icon(Icons.arrow_back_ios, color: AppColors.primary),
-        //     ),
-        //   ),
-        // ),
-
         title: CustomText(
           text: 'Add Task ',
           fontSize: 16,
@@ -75,7 +60,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                   GetBuilder<AddTaskController>(
                     builder: (controller) {
                       return Visibility(
-                        visible: !addTaskController.isloading,
+                        visible: !controller.isLoading,
                         replacement: Center(child: CustomLoader()),
 
                         child: AppButton(
@@ -83,7 +68,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                           ontap: () async {
                             String title = titleTEController.text.trim();
                             String description = desTEController.text.trim();
-                            await addTaskController.createNewTask(
+                            await controller.createNewTask(
                               title: title,
                               description: description,
                             );

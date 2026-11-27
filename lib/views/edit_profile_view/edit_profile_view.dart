@@ -33,10 +33,6 @@ class _EditProfileViewState extends State<EditProfileView> {
   final emailaddressController = TextEditingController();
   final addressController = TextEditingController();
 
-  final UpdateProfileController _updateProfileController = Get.put(
-    UpdateProfileController(),
-  );
-
   void setInfo() {
     firstnameController.text = widget.firstname;
     lastnameController.text = widget.lastname;
@@ -114,7 +110,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                     GetBuilder<UpdateProfileController>(
                       builder: (controller) {
                         return Visibility(
-                          visible: !controller.isloading,
+                          visible: !controller.isLoading,
                           replacement: Center(child: CustomLoader()),
 
                           child: AppButton(
@@ -125,7 +121,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                               String lastname = lastnameController.text.trim();
                               String address = addressController.text.trim();
 
-                              _updateProfileController.updateProfile(
+                              controller.updateProfile(
                                 firstname,
                                 lastname,
                                 address,
