@@ -196,7 +196,7 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
         GetBuilder<SignupController>(
           builder: (controller) {
             return Visibility(
-              visible: !controller.isloading,
+              visible: !controller.isLoading,
               replacement: Center(child: CustomLoader()),
               child: AppButton(
                 title: 'Continue',
@@ -219,8 +219,8 @@ class _SignupBodyWidgetState extends State<SignupBodyWidget> {
                     }
 
                     controller.signup(
-                      first_name: first_name,
-                      last_name: last_name,
+                      firstName: first_name,
+                      lastName: last_name,
                       gmail: gmail,
                       address: address,
                       password: password,

@@ -6,17 +6,17 @@ import 'package:task_manager/constant/app_url.dart';
 import 'package:http/http.dart';
 import 'package:task_manager/utils/dashboard.dart';
 
-import '../../../constant/localstorage.dart';
+import '../../../constant/local_storage.dart';
 
 class OTPController extends GetxController {
-  bool isloading = false;
+  bool isLoading = false;
 
   Future<void> verifyOtp({
     required String gmail,
     required String otp,
     required String purpose,
   }) async {
-    isloading = true;
+    isLoading = true;
     update();
 
     try {
@@ -32,9 +32,9 @@ class OTPController extends GetxController {
 
       if (responsebody['success'] == true) {
         String token = responsebody['data']['access_token'];
-        Localstorage.saveToken(token);
+        LocalStorage.saveToken(token);
         var userdata = responsebody['data']['user'];
-        Localstorage.saveUserInfo(userdata);
+        LocalStorage.saveUserInfo(userdata);
         Get.to(Dashboard());
       } else {
         Get.snackbar(
@@ -47,7 +47,7 @@ class OTPController extends GetxController {
     } catch (e) {
       debugPrint('Error: $e');
     } finally {
-      isloading = false;
+      isLoading = false;
       update();
     }
   }

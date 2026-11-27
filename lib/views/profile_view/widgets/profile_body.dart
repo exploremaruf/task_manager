@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/constant/app_colors.dart';
-import 'package:task_manager/constant/localstorage.dart';
+import 'package:task_manager/constant/local_storage.dart';
 import 'package:task_manager/utils/custom_text.dart';
 import 'package:task_manager/utils/dialog_template.dart';
 import 'package:task_manager/views/account_setting/account_setting.dart';
@@ -74,7 +74,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                 title: 'Are you sure you want to log out?',
                 message: 'You will be logged out from the app.',
                 onConfirm: () {
-                  Localstorage.deleteAll();
+                  LocalStorage.deleteAll();
                   if (!mounted) return;
                   Get.offAll(LoginView());
                 },

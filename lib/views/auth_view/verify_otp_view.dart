@@ -1,13 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/utils/custom_loader.dart';
 import 'package:task_manager/views/auth_view/controller/otp_controller.dart';
-import 'package:task_manager/views/auth_view/controller/signup_controller.dart';
-import 'package:task_manager/views/auth_view/set_new_password_view.dart';
 
 import '../../utils/app_button.dart';
 import '../../utils/auth_screen_des.dart';
@@ -24,7 +20,6 @@ class VerifyOtpView extends StatefulWidget {
 
 class _VerifyOtpViewState extends State<VerifyOtpView> {
   final PinInputController pinInputController = PinInputController();
-  final OTPController otpController = Get.put(OTPController());
 
   @override
   void dispose() {
@@ -57,13 +52,14 @@ class _VerifyOtpViewState extends State<VerifyOtpView> {
                       if (value == null || value.length < 6) {
                         return 'Please enter all 6 digits';
                       }
+                      return null;
                     },
                     length: 6,
                     onCompleted: (pin) {
-                      print('Entered PIN: $pin');
+                      debugPrint('Entered PIN: $pin');
                     },
                     onChanged: (value) {
-                      print('Current PIN: $value');
+                      debugPrint('Current PIN: $value');
                     },
 
                     theme: MaterialPinTheme(
@@ -87,7 +83,7 @@ class _VerifyOtpViewState extends State<VerifyOtpView> {
                 GetBuilder<OTPController>(
                   builder: (controller) {
                     return Visibility(
-                      visible: !controller.isloading,
+                      visible: !controller.isLoading,
                       replacement: Center(child: CustomLoader()),
                       child: AppButton(
                         title: 'Send',
@@ -103,7 +99,7 @@ class _VerifyOtpViewState extends State<VerifyOtpView> {
                             String gmail = widget.email;
                             String otp = pinInputController.text;
                             String purpose = 'VERIFICATION';
-                            otpController.verifyOtp(
+                            controller.verifyOtp(
                               gmail: gmail,
                               otp: otp,
                               purpose: purpose,

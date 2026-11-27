@@ -5,19 +5,20 @@ import 'package:task_manager/utils/custom_loader.dart';
 import 'package:task_manager/utils/custom_text.dart';
 import 'package:task_manager/views/edit_profile_view/edit_profile_view.dart';
 import 'package:task_manager/views/myprofile_view/controller/currentprofilecontroller.dart';
-import 'package:task_manager/views/myprofile_view/model/current_profile.dart';
 import 'package:task_manager/views/myprofile_view/widgets/myprofile_header.dart';
 import 'package:task_manager/views/myprofile_view/widgets/myprofile_item_tile.dart';
 
 class MyprofileView extends StatefulWidget {
-  MyprofileView({super.key});
+  const MyprofileView({super.key});
 
   @override
   State<MyprofileView> createState() => _MyprofileViewState();
 }
 
 class _MyprofileViewState extends State<MyprofileView> {
-  final Currentprofilecontroller controller = Currentprofilecontroller();
+  final Currentprofilecontroller controller =
+      Get.find<Currentprofilecontroller>();
+
   bool isloading = false;
 
   Future<void> fetchCurrentProfile() async {
@@ -28,11 +29,13 @@ class _MyprofileViewState extends State<MyprofileView> {
     try {
       await controller.getCurrentProfile();
 
-      print(controller.profile?.data.firstName);
+      debugPrint(controller.profile?.data.firstName);
     } catch (e) {
-      print('Error fetching current profile: $e');
+      debugPrint('Error fetching current profile: $e');
     } finally {
-      if (!mounted) return;
+      if (!mounted) {
+        return;
+      }
 
       setState(() {
         isloading = false;

@@ -4,21 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/constant/app_url.dart';
 import 'package:http/http.dart';
-import 'package:task_manager/constant/localstorage.dart';
+import 'package:task_manager/constant/local_storage.dart';
 
 import '../../../utils/dashboard.dart';
 
 class LoginController extends GetxController {
-  bool isloading = false;
+  bool isLoading = false;
 
   Future<void> login({required String email, required String password}) async {
-    print('Login function called');
-    isloading = true;
+    debugPrint('Login function called');
+    isLoading = true;
     update();
     try {
       var uri = Uri.parse(AppUrl.login);
 
-      print('Sending request...');
+      debugPrint('Sending request...');
 
       var response = await post(
         uri,
@@ -26,34 +26,34 @@ class LoginController extends GetxController {
         body: jsonEncode({'gmail': email, 'password': password}),
       );
 
-      final responsebody = jsonDecode(response.body);
+      final responseBody = jsonDecode(response.body);
 
-      if (responsebody['success'] == true) {
-        String token = responsebody['data']['access_token'];
-        print("Token: $token");
-        Localstorage.saveToken(token);
+      if (responseBody['success'] == true) {
+        String token = responseBody['data']['access_token'];
+        debugPrint("Token: $token");
+        LocalStorage.saveToken(token);
 
-        var userdata = responsebody['data']['user'];
-        print('userinfo: $userdata');
-        Localstorage.saveUserInfo(userdata);
+        var userdata = responseBody['data']['user'];
+        debugPrint('userinfo: $userdata');
+        LocalStorage.saveUserInfo(userdata);
 
         Get.offAll(Dashboard());
-        print(token);
+        debugPrint(token);
       } else {
         Get.snackbar(
           'Error',
-          responsebody['message'],
+          responseBody['message'],
           backgroundColor: Colors.red,
           colorText: Colors.white,
         );
       }
 
-      print('Status Code: ${response.statusCode}');
-      print('Response Body: ${response.body}');
+      debugPrint('Status Code: ${response.statusCode}');
+      debugPrint('Response Body: ${response.body}');
     } catch (e) {
-      print('Error: $e');
+      debugPrint('Error: $e');
     } finally {
-      isloading = false;
+      isLoading = false;
       update();
     }
   }

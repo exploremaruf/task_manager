@@ -5,18 +5,18 @@ import 'package:get/get.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/constant/app_url.dart';
 import 'package:http/http.dart' as http;
-import 'package:task_manager/constant/localstorage.dart';
+import 'package:task_manager/constant/local_storage.dart';
 
 class UpdateProfileController extends GetxController {
-  bool isloading = false;
+  bool isLoading = false;
 
   void updateProfile(String firstname, String lastname, String address) async {
-    isloading = true;
+    isLoading = true;
     update();
 
     try {
       final uri = Uri.parse(AppUrl.updateprofile);
-      String? token = await Localstorage.getToken();
+      String? token = await LocalStorage.getToken();
       final body = {
         'first_name': firstname,
         'last_name': lastname,
@@ -41,7 +41,7 @@ class UpdateProfileController extends GetxController {
           colorText: Colors.white,
         );
         final responseBody = jsonDecode(response.body);
-        Localstorage.saveUserInfo(responseBody['data']);
+        LocalStorage.saveUserInfo(responseBody['data']);
       } else {
         Get.snackbar(
           'Error',
@@ -53,7 +53,7 @@ class UpdateProfileController extends GetxController {
     } catch (e) {
       debugPrint('Something went wrong: $e');
     } finally {
-      isloading = false;
+      isLoading = false;
       update();
     }
   }

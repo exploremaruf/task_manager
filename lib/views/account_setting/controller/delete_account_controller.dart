@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:task_manager/views/auth_view/login_view.dart';
 
 import '../../../constant/app_url.dart';
-import '../../../constant/localstorage.dart';
+import '../../../constant/local_storage.dart';
 
 class DeleteAccountController extends GetxController {
   bool isloading = false;
@@ -17,7 +17,7 @@ class DeleteAccountController extends GetxController {
 
     try {
       final uri = Uri.parse(AppUrl.deleteaccount);
-      String? token = await Localstorage.getToken();
+      String? token = await LocalStorage.getToken();
 
       final response = await http.delete(
         uri,
@@ -33,7 +33,7 @@ class DeleteAccountController extends GetxController {
       var responsebody = jsonDecode(response.body);
 
       if (responsebody['success'] == true) {
-        Localstorage.deleteAll();
+        LocalStorage.deleteAll();
         Get.offAll(LoginView());
       } else {
         Get.snackbar(

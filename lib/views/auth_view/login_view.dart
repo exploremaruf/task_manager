@@ -20,12 +20,11 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final TextEditingController emailTEcontroller = TextEditingController();
-  final TextEditingController passwordTEcontroller = TextEditingController();
+  final TextEditingController emailTEController = TextEditingController();
+  final TextEditingController passwordTEController = TextEditingController();
   bool _isRememberd = false;
-  final bool _isPasswordhidden = true;
+  final bool _isPasswordHidden = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final LoginController loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +50,15 @@ class _LoginViewState extends State<LoginView> {
                     child: Column(
                       children: [
                         AppInputFields(
-                          controller: emailTEcontroller,
+                          controller: emailTEController,
                           label: 'Email Address',
                           hinttext: 'Enter your email',
                         ),
                         Gap(23),
                         AppInputFields(
-                          obscureText: _isPasswordhidden,
+                          obscureText: _isPasswordHidden,
 
-                          controller: passwordTEcontroller,
+                          controller: passwordTEController,
                           label: 'Password',
                           hinttext: 'Enter your password',
                         ),
@@ -124,14 +123,14 @@ class _LoginViewState extends State<LoginView> {
                   GetBuilder<LoginController>(
                     builder: (controller) {
                       return Visibility(
-                        visible: !controller.isloading,
+                        visible: !controller.isLoading,
                         replacement: Center(child: CustomLoader()),
                         child: AppButton(
                           title: 'Log In',
                           ontap: () {
                             if (_formKey.currentState!.validate()) {
-                              String email = emailTEcontroller.text.trim();
-                              String password = passwordTEcontroller.text
+                              String email = emailTEController.text.trim();
+                              String password = passwordTEController.text
                                   .trim();
 
                               controller.login(
@@ -153,13 +152,11 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-
-
   @override
   void dispose() {
     // TODO: implement dispose
-    emailTEcontroller.dispose();
-    passwordTEcontroller.dispose();
+    emailTEController.dispose();
+    passwordTEController.dispose();
     super.dispose();
   }
 }

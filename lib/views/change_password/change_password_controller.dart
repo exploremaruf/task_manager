@@ -4,24 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:task_manager/constant/app_url.dart';
-import 'package:task_manager/constant/localstorage.dart';
+import 'package:task_manager/constant/local_storage.dart';
 
 import '../../constant/app_colors.dart';
 
 class ChangePasswordController extends GetxController {
-  bool isloading = false;
+  bool isLoading = false;
 
-  void changepassword(
+  void changePassword(
     String oldPassword,
     String newPassword,
     String confirmPassword,
   ) async {
-    isloading = true;
+    isLoading = true;
     update();
 
     try {
       final uri = Uri.parse(AppUrl.changepassword);
-      String? token = await Localstorage.getToken();
+      String? token = await LocalStorage.getToken();
 
       var body = {
         'old_password': oldPassword,
@@ -38,9 +38,9 @@ class ChangePasswordController extends GetxController {
         body: jsonEncode(body),
       );
 
-      var responsebody = jsonDecode(response.body);
+      var responseBody = jsonDecode(response.body);
 
-      if (responsebody['success'] == true) {
+      if (responseBody['success'] == true) {
         Get.back();
         Get.snackbar(
           'Password updated successfully',
@@ -49,11 +49,11 @@ class ChangePasswordController extends GetxController {
           colorText: Colors.white,
         );
 
-        print(responsebody.toString());
+        debugPrint(responseBody.toString());
       } else {
         Get.snackbar(
           'Error',
-          '${responsebody['message']}',
+          '${responseBody['message']}',
           backgroundColor: Colors.red,
           colorText: Colors.white,
         );
@@ -61,7 +61,7 @@ class ChangePasswordController extends GetxController {
     } catch (e) {
       debugPrint('Something went wrong: $e');
     } finally {
-      isloading = false;
+      isLoading = false;
       update();
     }
   }

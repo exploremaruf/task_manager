@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:task_manager/constant/app_assets.dart';
 import 'package:task_manager/constant/app_colors.dart';
-import 'package:task_manager/constant/localstorage.dart';
+import 'package:task_manager/constant/local_storage.dart';
 import 'package:task_manager/utils/custom_text.dart';
 import 'package:task_manager/utils/task_item.dart';
 import 'package:task_manager/views/home_view/model/task_model.dart';
@@ -25,7 +25,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Future<void> loadUserInfo() async {
-    user = await Localstorage.getUserInfo();
+    user = await LocalStorage.getUserInfo();
     setState(() {});
   }
 

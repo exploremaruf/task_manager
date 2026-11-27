@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:task_manager/constant/localstorage.dart';
+import 'package:task_manager/constant/local_storage.dart';
 import 'package:task_manager/utils/dashboard.dart';
 import 'package:task_manager/views/onboarding_view/onboarding_1_view/onboarding_1_view.dart';
 
@@ -26,7 +26,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   Future<void> checkToken() async {
-    String? token = await Localstorage.getToken();
+    String? token = await LocalStorage.getToken();
     if (!mounted) return;
 
     if (token != null && token.isNotEmpty) {
