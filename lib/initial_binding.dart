@@ -6,6 +6,7 @@ import 'package:task_manager/views/auth_view/controller/otp_controller.dart';
 import 'package:task_manager/views/auth_view/controller/signup_controller.dart';
 import 'package:task_manager/views/change_password/change_password_controller.dart';
 import 'package:task_manager/views/edit_profile_view/controller/update_profile_controller.dart';
+import 'package:task_manager/views/home_view/controller/task_controller.dart';
 import 'package:task_manager/views/myprofile_view/controller/currentprofilecontroller.dart';
 import 'package:task_manager/views/terms_and_condition_view/controller/terms_and_condition_controller.dart';
 
@@ -21,6 +22,7 @@ class InitialBinding extends Bindings {
     Get.lazyPut<ChangePasswordController>(() => ChangePasswordController());
     Get.lazyPut<UpdateProfileController>(() => UpdateProfileController());
     Get.lazyPut<Currentprofilecontroller>(() => Currentprofilecontroller());
+    Get.lazyPut<TaskController>( () => TaskController());
     Get.lazyPut<TermsAndConditionController>(
       () => TermsAndConditionController(),
     );
