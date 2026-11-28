@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:task_manager/constant/app_assets.dart';
 import 'package:task_manager/constant/app_colors.dart';
 import 'package:task_manager/constant/local_storage.dart';
+import 'package:task_manager/utils/custom_loader.dart';
 import 'package:task_manager/utils/custom_text.dart';
 import 'package:task_manager/utils/task_item.dart';
-import 'package:task_manager/views/home_view/model/task_model.dart';
+import 'package:task_manager/views/home_view/controller/task_controller.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -16,12 +18,14 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   Map<String, dynamic>? user;
+  final TaskController taskController = Get.find<TaskController>();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     loadUserInfo();
+    GetTasks();
   }
 
   Future<void> loadUserInfo() async {
@@ -29,8 +33,13 @@ class _HomeViewState extends State<HomeView> {
     setState(() {});
   }
 
+  Future<void> GetTasks() async {
+    await taskController.getTasks();
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -76,17 +85,27 @@ class _HomeViewState extends State<HomeView> {
               ),
               SizedBox(height: 5),
 
-              Expanded(
-                child: ListView.builder(
-                  padding: EdgeInsets.only(bottom: 31),
-                  itemCount: TaskModel.tasklist.length,
-                  itemBuilder: (context, index) {
-                    return TaskItem(
-                      title: '${TaskModel.tasklist[index]['title']}',
-                      des: '${TaskModel.tasklist[index]['description']}',
-                    );
-                  },
-                ),
+              GetBuilder<TaskController>(
+                builder: (controller) {
+                  final taskData = taskController.responseData?.data;
+
+                  return Visibility(
+                    visible: !controller.isLoading,
+                    replacement: Center(child: CustomLoader()),
+                    child: Expanded(
+                      child: ListView.builder(
+                        padding: EdgeInsets.only(bottom: 31),
+                        itemCount: taskData?.tasks?.length,
+                        itemBuilder: (context, index) {
+                          return TaskItem(
+                            title: '${taskData?.tasks?[index].title}',
+                            des: '${taskData?.tasks?[index].content}',
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
